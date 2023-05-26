@@ -29,7 +29,7 @@ namespace Domain
             Hunger += food.Repletion;
         }
 
-        public void Use(Shower shower)
+        public void Use(IUsable usable)
         {
             Hygiene = NeedMaxValue;
         }

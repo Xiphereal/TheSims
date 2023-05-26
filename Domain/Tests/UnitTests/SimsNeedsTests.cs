@@ -41,6 +41,16 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
+        public void Hygiene_is_restored_by_bathing()
+        {
+            Sim sut = Sim().WithHygiene(80).Build();
+
+            sut.Use(new Bath());
+
+            sut.Hygiene.Should().Be(100);
+        }
+
+        [Fact]
         public void Hygiene_cannot_overflow()
         {
             Sim sut = Sim().Build();

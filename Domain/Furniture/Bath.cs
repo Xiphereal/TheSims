@@ -1,6 +1,6 @@
 ﻿namespace Domain.Furniture
 {
-    public class Shower : IUsable
+    public class Bath : IUsable
     {
     }
 }
