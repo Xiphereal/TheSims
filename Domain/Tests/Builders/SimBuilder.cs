@@ -4,6 +4,7 @@
     {
         private int hunger = 100;
         private int hygiene = 100;
+        private int energy = 100;
 
         private SimBuilder()
         { }
@@ -24,9 +25,16 @@
             return this;
         }
 
+        public SimBuilder WithEnergy(int value)
+        {
+            energy = value;
+
+            return this;
+        }
+
         public Sim Build()
         {
-            return new Sim(hunger, hygiene);
+            return new Sim(hunger, hygiene, energy);
         }
     }
 }

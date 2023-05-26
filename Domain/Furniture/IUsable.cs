@@ -2,5 +2,6 @@
 {
     public interface IUsable
     {
+        void Use(Sim user);
     }
 }

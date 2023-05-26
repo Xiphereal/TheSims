@@ -17,11 +17,13 @@ namespace Domain
         }
 
         public int Hygiene { get; private set; }
+        public int Energy { get; private set; }
 
-        public Sim(int hunger, int hygiene)
+        public Sim(int hunger, int hygiene, int energy)
         {
             Hunger = hunger;
             Hygiene = hygiene;
+            Energy = energy;
         }
 
         public void Eat(Food food)
@@ -31,7 +33,17 @@ namespace Domain
 
         public void Use(IUsable usable)
         {
-            Hygiene = NeedMaxValue;
+            usable.Use(user: this);
+        }
+
+        public void Sleep()
+        {
+            Energy = 100;
+        }
+
+        public void RestoreHygiene()
+        {
+            Hygiene = 100;
         }
     }
 }

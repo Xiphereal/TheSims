@@ -59,5 +59,15 @@ namespace Domain.Tests.UnitTests
 
             sut.Hygiene.Should().BeLessThanOrEqualTo(100);
         }
+
+        [Fact]
+        public void Energy_is_restored_by_sleeping()
+        {
+            Sim sut = Sim().WithEnergy(80).Build();
+
+            sut.Use(new Bed());
+
+            sut.Energy.Should().Be(100);
+        }
     }
 }
