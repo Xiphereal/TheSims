@@ -4,33 +4,20 @@ namespace Domain
 {
     public class Sim
     {
-        private const int NeedMaxValue = 100;
-        private int hunger;
+        public int Hunger => Needs.Hunger;
+        public int Hygiene => Needs.Hygiene;
+        public int Energy => Needs.Energy;
+        public int Comfort => Needs.Comfort;
+        public Needs Needs { get; }
 
-        public int Hunger
+        public Sim(Needs needs)
         {
-            get => hunger;
-            private set
-            {
-                hunger = value > NeedMaxValue ? NeedMaxValue : value;
-            }
-        }
-
-        public int Hygiene { get; private set; }
-        public int Energy { get; private set; }
-        public int Comfort { get; set; }
-
-        public Sim(int hunger, int hygiene, int energy, int confort)
-        {
-            Hunger = hunger;
-            Hygiene = hygiene;
-            Energy = energy;
-            Comfort = confort;
+            Needs = needs;
         }
 
         public void Eat(Food food)
         {
-            Hunger += food.Repletion;
+            Needs.Hunger += food.Repletion;
         }
 
         public void Perform(IAction action)
@@ -40,18 +27,18 @@ namespace Domain
 
         public void Sleep()
         {
-            Energy = 100;
+            Needs.Energy = 100;
             RestoreComfort();
         }
 
         public void RestoreHygiene()
         {
-            Hygiene = 100;
+            Needs.Hygiene = 100;
         }
 
         public void RestoreComfort()
         {
-            Comfort = 100;
+            Needs.Comfort = 100;
         }
     }
 }

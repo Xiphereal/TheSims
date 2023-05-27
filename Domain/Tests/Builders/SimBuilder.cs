@@ -42,7 +42,7 @@
 
         public Sim Build()
         {
-            return new Sim(hunger, hygiene, energy, comfort);
+            return new Sim(new Needs(hunger, hygiene, energy, comfort));
         }
     }
 }
