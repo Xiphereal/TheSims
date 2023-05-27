@@ -1,4 +1,5 @@
-﻿using Domain.Furniture;
+﻿using Domain.Actions;
+using Domain.Furniture;
 
 namespace Domain
 {
@@ -18,12 +19,14 @@ namespace Domain
 
         public int Hygiene { get; private set; }
         public int Energy { get; private set; }
+        public int Comfort { get; set; }
 
-        public Sim(int hunger, int hygiene, int energy)
+        public Sim(int hunger, int hygiene, int energy, int confort)
         {
             Hunger = hunger;
             Hygiene = hygiene;
             Energy = energy;
+            Comfort = confort;
         }
 
         public void Eat(Food food)
@@ -36,6 +39,11 @@ namespace Domain
             usable.Use(user: this);
         }
 
+        public void Perform(IAction action)
+        {
+            action.Perform(performer: this);
+        }
+
         public void Sleep()
         {
             Energy = 100;
@@ -44,6 +52,11 @@ namespace Domain
         public void RestoreHygiene()
         {
             Hygiene = 100;
+        }
+
+        public void RestoreComfort()
+        {
+            Comfort = 100;
         }
     }
 }

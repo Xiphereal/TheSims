@@ -1,3 +1,4 @@
+using Domain.Actions;
 using Domain.Furniture;
 using FluentAssertions;
 using Xunit;
@@ -61,7 +62,7 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
-        public void Energy_is_restored_by_sleeping()
+        public void Energy_is_restored_by_sleeping_on_bed()
         {
             Sim sut = Sim().WithEnergy(80).Build();
 
@@ -78,6 +79,26 @@ namespace Domain.Tests.UnitTests
             sut.Use(new Bed());
 
             sut.Energy.Should().BeLessThanOrEqualTo(100);
+        }
+
+        [Fact]
+        public void Energy_is_restored_by_sleeping_on_sofa()
+        {
+            Sim sut = Sim().WithEnergy(80).Build();
+
+            sut.Use(new Sofa());
+
+            sut.Energy.Should().Be(100);
+        }
+
+        [Fact]
+        public void Confort_is_restored_by_sitting()
+        {
+            Sim sut = Sim().WithComfort(80).Build();
+
+            sut.Perform(new Sit(on: new Sofa()));
+
+            sut.Comfort.Should().Be(100);
         }
     }
 }
