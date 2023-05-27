@@ -72,16 +72,6 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
-        public void Energy_cannot_overflow()
-        {
-            Sim sut = Sim().Build();
-
-            sut.Use(new Bed());
-
-            sut.Energy.Should().BeLessThanOrEqualTo(100);
-        }
-
-        [Fact]
         public void Energy_is_restored_by_sleeping_on_sofa()
         {
             Sim sut = Sim().WithEnergy(80).Build();
@@ -92,13 +82,33 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
-        public void Confort_is_restored_by_sitting()
+        public void Energy_cannot_overflow()
+        {
+            Sim sut = Sim().Build();
+
+            sut.Use(new Bed());
+
+            sut.Energy.Should().BeLessThanOrEqualTo(100);
+        }
+
+        [Fact]
+        public void Comfort_is_restored_by_sitting()
         {
             Sim sut = Sim().WithComfort(80).Build();
 
             sut.Perform(new Sit(on: new Sofa()));
 
             sut.Comfort.Should().Be(100);
+        }
+
+        [Fact]
+        public void Comfort_cannot_overflow()
+        {
+            Sim sut = Sim().Build();
+
+            sut.Perform(new Sit(on: new Sofa()));
+
+            sut.Comfort.Should().BeLessThanOrEqualTo(100);
         }
     }
 }
