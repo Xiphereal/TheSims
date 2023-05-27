@@ -4,6 +4,7 @@
     {
         private int hunger = 100;
         private int hygiene = 100;
+        private int bladder = 100;
         private int energy = 100;
         private int comfort = 100;
 
@@ -26,6 +27,13 @@
             return this;
         }
 
+        public SimBuilder WithBladder(int value)
+        {
+            bladder = value;
+
+            return this;
+        }
+
         public SimBuilder WithEnergy(int value)
         {
             energy = value;
@@ -42,7 +50,7 @@
 
         public Sim Build()
         {
-            return new Sim(new Needs(hunger, hygiene, energy, comfort));
+            return new Sim(new Needs(hunger, hygiene, bladder, energy, comfort));
         }
     }
 }

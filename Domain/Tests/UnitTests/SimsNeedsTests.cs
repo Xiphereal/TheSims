@@ -62,6 +62,26 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
+        public void Bladder_is_relieved_by_using_a_toilet()
+        {
+            Sim sut = Sim().WithBladder(80).Build();
+
+            sut.Perform(new UseToilet(new Toilet()));
+
+            sut.Bladder.Should().Be(100);
+        }
+
+        [Fact]
+        public void Bladder_cannot_overflow()
+        {
+            Sim sut = Sim().Build();
+
+            sut.Perform(new UseToilet(new Toilet()));
+
+            sut.Bladder.Should().BeLessThanOrEqualTo(100);
+        }
+
+        [Fact]
         public void Both_Energy_and_Comfort_are_restored_by_sleeping_on_bed()
         {
             Sim sut = Sim().WithEnergy(80).WithComfort(80).Build();

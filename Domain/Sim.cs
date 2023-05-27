@@ -6,6 +6,7 @@ namespace Domain
     {
         public int Hunger => Needs.Hunger;
         public int Hygiene => Needs.Hygiene;
+        public int Bladder => Needs.Bladder;
         public int Energy => Needs.Energy;
         public int Comfort => Needs.Comfort;
         public Needs Needs { get; }
@@ -34,6 +35,11 @@ namespace Domain
         public void RestoreHygiene()
         {
             Needs.Hygiene = 100;
+        }
+
+        public void RestoreBladder()
+        {
+            Needs.Bladder = 100;
         }
 
         public void RestoreComfort()

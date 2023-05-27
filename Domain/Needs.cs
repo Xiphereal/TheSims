@@ -15,13 +15,15 @@
         }
 
         public int Hygiene { get; set; }
+        public int Bladder { get; set; }
         public int Energy { get; set; }
         public int Comfort { get; set; }
 
-        public Needs(int hunger, int hygiene, int energy, int confort)
+        public Needs(int hunger, int hygiene, int bladder, int energy, int confort)
         {
             Hunger = hunger;
             Hygiene = hygiene;
+            Bladder = bladder;
             Energy = energy;
             Comfort = confort;
         }
