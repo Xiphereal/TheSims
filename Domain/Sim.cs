@@ -1,5 +1,4 @@
 ﻿using Domain.Actions;
-using Domain.Furniture;
 
 namespace Domain
 {
@@ -32,11 +31,6 @@ namespace Domain
         public void Eat(Food food)
         {
             Hunger += food.Repletion;
-        }
-
-        public void Use(IUsable usable)
-        {
-            usable.Use(user: this);
         }
 
         public void Perform(IAction action)

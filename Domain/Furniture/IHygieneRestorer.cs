@@ -1,6 +1,6 @@
 ﻿namespace Domain.Furniture
 {
-    public class Shower : IHygieneRestorer
+    public interface IHygieneRestorer
     {
     }
 }

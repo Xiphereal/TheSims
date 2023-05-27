@@ -36,7 +36,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().WithHygiene(80).Build();
 
-            sut.Use(new Shower());
+            sut.Perform(new TakeAShower(new Shower()));
 
             sut.Hygiene.Should().Be(100);
         }
@@ -46,7 +46,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().WithHygiene(80).Build();
 
-            sut.Use(new Bath());
+            sut.Perform(new TakeAShower(new Bath()));
 
             sut.Hygiene.Should().Be(100);
         }
@@ -56,7 +56,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().Build();
 
-            sut.Use(new Shower());
+            sut.Perform(new TakeAShower(new Shower()));
 
             sut.Hygiene.Should().BeLessThanOrEqualTo(100);
         }

@@ -1,10 +1,6 @@
 ﻿namespace Domain.Furniture
 {
-    public class Bath : IUsable
+    public class Bath : IHygieneRestorer
     {
-        public void Use(Sim user)
-        {
-            user.RestoreHygiene();
-        }
     }
 }
