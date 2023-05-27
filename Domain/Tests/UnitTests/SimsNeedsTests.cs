@@ -62,23 +62,25 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
-        public void Energy_is_restored_by_sleeping_on_bed()
+        public void Both_Energy_and_Comfort_are_restored_by_sleeping_on_bed()
         {
-            Sim sut = Sim().WithEnergy(80).Build();
+            Sim sut = Sim().WithEnergy(80).WithComfort(80).Build();
 
-            sut.Use(new Bed());
+            sut.Perform(new Sleep(on: new Bed()));
 
             sut.Energy.Should().Be(100);
+            sut.Comfort.Should().Be(100);
         }
 
         [Fact]
-        public void Energy_is_restored_by_sleeping_on_sofa()
+        public void Both_Energy_and_Comfort_are_restored_by_sleeping_on_sofa()
         {
-            Sim sut = Sim().WithEnergy(80).Build();
+            Sim sut = Sim().WithEnergy(80).WithComfort(80).Build();
 
-            sut.Use(new Sofa());
+            sut.Perform(new Sleep(on: new Sofa()));
 
             sut.Energy.Should().Be(100);
+            sut.Comfort.Should().Be(100);
         }
 
         [Fact]
@@ -86,7 +88,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().Build();
 
-            sut.Use(new Bed());
+            sut.Perform(new Sleep(on: new Sofa()));
 
             sut.Energy.Should().BeLessThanOrEqualTo(100);
         }

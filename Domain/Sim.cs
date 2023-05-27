@@ -47,6 +47,7 @@ namespace Domain
         public void Sleep()
         {
             Energy = 100;
+            RestoreComfort();
         }
 
         public void RestoreHygiene()
