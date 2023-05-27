@@ -156,6 +156,37 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
+        public void Needs_increase_more_as_more_time_elapses()
+        {
+            Time time = new();
+            Lot lot = new(time);
+            Sim sim = Sim().Build();
+            lot.EnteredBy(sim);
+
+            time.Forward(AnyTimeSpan);
+
+            sim.Hunger.Should().BeLessThan(NeedMaxValue);
+            sim.Hygiene.Should().BeLessThan(NeedMaxValue);
+            sim.Bladder.Should().BeLessThan(NeedMaxValue);
+            sim.Energy.Should().BeLessThan(NeedMaxValue);
+            sim.Comfort.Should().BeLessThan(NeedMaxValue);
+
+            var previousHunger = sim.Hunger;
+            var previousHygiene = sim.Hygiene;
+            var previousBladder = sim.Bladder;
+            var previousEnergy = sim.Energy;
+            var previousComfort = sim.Comfort;
+
+            time.Forward(AnyTimeSpan);
+
+            sim.Hunger.Should().BeLessThan(previousHunger);
+            sim.Hygiene.Should().BeLessThan(previousHygiene);
+            sim.Bladder.Should().BeLessThan(previousBladder);
+            sim.Energy.Should().BeLessThan(previousEnergy);
+            sim.Comfort.Should().BeLessThan(previousComfort);
+        }
+
+        [Fact]
         public void Needs_cannot_underflow()
         {
             Time time = new();
