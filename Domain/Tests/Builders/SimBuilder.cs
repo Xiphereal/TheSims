@@ -13,6 +13,15 @@
 
         public static SimBuilder Sim() => new();
 
+        public static SimBuilder SimWithAllNeedsToMinimum() => new()
+        {
+            hunger = 0,
+            hygiene = 0,
+            bladder = 0,
+            energy = 0,
+            comfort = 0,
+        };
+
         public SimBuilder WithHunger(int value)
         {
             hunger = value;

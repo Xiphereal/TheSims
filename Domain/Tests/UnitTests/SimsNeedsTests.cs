@@ -9,7 +9,9 @@ namespace Domain.Tests.UnitTests
 {
     public class SimsNeedsTests
     {
+        private const int NeedMinValue = 0;
         private const int NeedMaxValue = 100;
+        private static readonly TimeSpan AnyTimeSpan = TimeSpan.FromHours(1);
 
         [Theory]
         [InlineData(10)]
@@ -144,13 +146,30 @@ namespace Domain.Tests.UnitTests
             Sim sim = Sim().Build();
             lot.EnteredBy(sim);
 
-            time.Forward(TimeSpan.FromHours(1));
+            time.Forward(AnyTimeSpan);
 
             sim.Hunger.Should().BeLessThan(NeedMaxValue);
             sim.Hygiene.Should().BeLessThan(NeedMaxValue);
             sim.Bladder.Should().BeLessThan(NeedMaxValue);
             sim.Energy.Should().BeLessThan(NeedMaxValue);
             sim.Comfort.Should().BeLessThan(NeedMaxValue);
+        }
+
+        [Fact]
+        public void Needs_cannot_underflow()
+        {
+            Time time = new();
+            Lot lot = new(time);
+            Sim sim = SimWithAllNeedsToMinimum().Build();
+            lot.EnteredBy(sim);
+
+            time.Forward(AnyTimeSpan);
+
+            sim.Hunger.Should().BeGreaterThanOrEqualTo(NeedMinValue);
+            sim.Hygiene.Should().BeGreaterThanOrEqualTo(NeedMinValue);
+            sim.Bladder.Should().BeGreaterThanOrEqualTo(NeedMinValue);
+            sim.Energy.Should().BeGreaterThanOrEqualTo(NeedMinValue);
+            sim.Comfort.Should().BeGreaterThanOrEqualTo(NeedMinValue);
         }
     }
 }
