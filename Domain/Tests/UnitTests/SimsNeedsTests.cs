@@ -69,5 +69,15 @@ namespace Domain.Tests.UnitTests
 
             sut.Energy.Should().Be(100);
         }
+
+        [Fact]
+        public void Energy_cannot_overflow()
+        {
+            Sim sut = Sim().Build();
+
+            sut.Use(new Bed());
+
+            sut.Energy.Should().BeLessThanOrEqualTo(100);
+        }
     }
 }
