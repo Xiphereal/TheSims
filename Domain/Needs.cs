@@ -27,5 +27,14 @@
             Energy = energy;
             Comfort = confort;
         }
+
+        public void Increase()
+        {
+            Hunger--;
+            Hygiene--;
+            Bladder--;
+            Energy--;
+            Comfort--;
+        }
     }
 }

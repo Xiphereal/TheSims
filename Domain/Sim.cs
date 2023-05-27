@@ -21,6 +21,11 @@ namespace Domain
             Needs.Hunger += food.Repletion;
         }
 
+        public void IncreaseNeeds()
+        {
+            Needs.Increase();
+        }
+
         public void Perform(IAction action)
         {
             action.Perform(performer: this);
