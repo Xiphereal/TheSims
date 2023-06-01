@@ -1,0 +1,25 @@
+@startuml "Movement"
+skin rose
+
+boundary Input
+control Control 
+
+Input -> Control : MoveTo(point)
+Control -> Control : GetActiveSim()
+Control -> Sim : Command(Action.MoveTo(point))
+Sim --> Control
+
+...
+
+Sim -> Sim : Perform(Action.MoveTo(point))
+Sim --> Control : <Event> \n MovingTowards(point)
+
+Control --> Control : CanMove(sim, point)
+
+loop !IsThereYet(sim, point) && CanMove(sim)
+    alt 
+        Control --> Control : MoveTowards(sim, point)
+    end
+end
+
+@enduml
