@@ -1,4 +1,5 @@
 ﻿using Domain.Actions;
+using Domain.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,7 +7,7 @@ namespace Domain
 {
     public class Sim
     {
-        private readonly Queue<IAction> actions = new();
+        private Queue<IAction> actions = new();
 
         public int Hunger => Needs.Hunger;
         public int Hygiene => Needs.Hygiene;
@@ -23,6 +24,11 @@ namespace Domain
         public void Command(IAction action)
         {
             actions.Enqueue(action);
+        }
+
+        public void Cancel(IAction action)
+        {
+            actions = actions.Without(action);
         }
 
         public void PerformNextAction()
