@@ -3,12 +3,10 @@
     internal class LotBuilder
     {
         private Time time;
-        private CommandIssuer player;
 
         private LotBuilder()
         {
             time = new Time();
-            player = new CommandIssuer();
         }
 
         public static LotBuilder Lot() => new();
