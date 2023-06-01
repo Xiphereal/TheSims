@@ -14,7 +14,12 @@ namespace Domain
 
         public void EnteredBy(Sim sim)
         {
-            time.TimePassed += (_, _) => sim.IncreaseNeeds();
+            time.TimePassed += (_, _) =>
+            {
+                sim.PerformNextAction();
+                sim.IncreaseNeeds();
+            };
+
             sims.Add(sim);
         }
     }

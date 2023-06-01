@@ -1,9 +1,13 @@
 ﻿using Domain.Actions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain
 {
     public class Sim
     {
+        private readonly Queue<IAction> actions = new();
+
         public int Hunger => Needs.Hunger;
         public int Hygiene => Needs.Hygiene;
         public int Bladder => Needs.Bladder;
@@ -16,6 +20,22 @@ namespace Domain
             Needs = needs;
         }
 
+        public void Command(IAction action)
+        {
+            actions.Enqueue(action);
+        }
+
+        public void PerformNextAction()
+        {
+            if (actions.Any())
+                Perform(actions.Dequeue());
+        }
+
+        public void Perform(IAction action)
+        {
+            action.Perform(performer: this);
+        }
+
         public void Eat(Food food)
         {
             Needs.Hunger += food.Repletion;
@@ -24,11 +44,6 @@ namespace Domain
         public void IncreaseNeeds()
         {
             Needs.Increase();
-        }
-
-        public void Perform(IAction action)
-        {
-            action.Perform(performer: this);
         }
 
         public void Sleep()

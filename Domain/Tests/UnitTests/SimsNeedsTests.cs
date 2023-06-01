@@ -3,6 +3,7 @@ using Domain.Furniture;
 using FluentAssertions;
 using System;
 using Xunit;
+using static Domain.Tests.Builders.LotBuilder;
 using static Domain.Tests.Builders.SimBuilder;
 
 namespace Domain.Tests.UnitTests
@@ -142,7 +143,7 @@ namespace Domain.Tests.UnitTests
         public void Needs_increase_over_time()
         {
             Time time = new();
-            Lot lot = new(time);
+            Lot lot = Lot().With(time).Build();
             Sim sim = Sim().Build();
             lot.EnteredBy(sim);
 
@@ -159,7 +160,7 @@ namespace Domain.Tests.UnitTests
         public void Needs_increase_more_as_more_time_elapses()
         {
             Time time = new();
-            Lot lot = new(time);
+            Lot lot = Lot().With(time).Build();
             Sim sim = Sim().Build();
             lot.EnteredBy(sim);
 
@@ -190,7 +191,7 @@ namespace Domain.Tests.UnitTests
         public void Needs_cannot_underflow()
         {
             Time time = new();
-            Lot lot = new(time);
+            Lot lot = Lot().With(time).Build();
             Sim sim = SimWithAllNeedsToMinimum().Build();
             lot.EnteredBy(sim);
 
