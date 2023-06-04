@@ -1,18 +1,14 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.0.3">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <EnableDynamicLoading>true</EnableDynamicLoading>
-    <RootNamespace>Domain</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>Domain</RootNamespace>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Tests\**" />
-    <EmbeddedResource Remove="Tests\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Tests\**" />
+		<EmbeddedResource Remove="Tests\**" />
+		<None Remove="Tests\**" />
+	</ItemGroup>
 
 </Project>
