@@ -5,9 +5,9 @@ namespace Domain.Actions
     // TODO: Is there a common term between taking a shower and a bath?
     public class TakeAShower : IAction
     {
-        private IHygieneRestorer hygieneRestorer;
+        private HygieneRestorer hygieneRestorer;
 
-        public TakeAShower(IHygieneRestorer hygieneRestorer)
+        public TakeAShower(HygieneRestorer hygieneRestorer)
         {
             this.hygieneRestorer = hygieneRestorer;
         }

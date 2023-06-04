@@ -5,9 +5,6 @@ namespace Domain.Furniture
 {
     public class Toilet : IBladderRestorer
     {
-        public IEnumerable<IAction> AvailableActions()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IEnumerable<IAction> AvailableActions() => new List<IAction> { new UseToilet(this) };
     }
 }

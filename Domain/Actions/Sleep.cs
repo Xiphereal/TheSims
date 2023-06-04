@@ -4,9 +4,9 @@ namespace Domain.Actions
 {
     public struct Sleep : IAction
     {
-        private ISleepable sleepable;
+        private Sleepable sleepable;
 
-        public Sleep(ISleepable on)
+        public Sleep(Sleepable on)
         {
             sleepable = on;
         }

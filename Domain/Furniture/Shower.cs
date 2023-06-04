@@ -1,13 +1,6 @@
-﻿using Domain.Actions;
-using System.Collections.Generic;
-
-namespace Domain.Furniture
+﻿namespace Domain.Furniture
 {
-    public class Shower : IHygieneRestorer
+    public class Shower : HygieneRestorer
     {
-        public IEnumerable<IAction> AvailableActions()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

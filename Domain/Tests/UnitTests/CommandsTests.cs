@@ -61,14 +61,43 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
-        public void Beds_can_be_used_to_get_laid_and_sleep()
+        public void Beds_can_be_used_to_lie_down_and_sleep()
         {
-            Bed bed = new();
+            new Bed()
+                .AvailableActions().Select(x => x.GetType())
+                .Should().BeEquivalentTo(new[] { typeof(Lay), typeof(Sleep) });
+        }
 
-            var actions = bed.AvailableActions();
+        [Fact]
+        public void Sofa_can_be_used_to_sit_lie_down_and_sleep()
+        {
+            new Sofa()
+                .AvailableActions().Select(x => x.GetType())
+                .Should().BeEquivalentTo(new[] { typeof(Sit), typeof(Lay), typeof(Sleep) });
+        }
 
-            actions.Select(x => x.GetType())
-                .Should().BeEquivalentTo(new[] { typeof(Sleep), typeof(Lay) });
+        [Fact]
+        public void Showers_can_be_used_to_take_a_shower()
+        {
+            new Shower()
+                .AvailableActions().Select(x => x.GetType())
+                .Should().BeEquivalentTo(new[] { typeof(TakeAShower) });
+        }
+
+        [Fact]
+        public void Baths_can_be_used_to_take_a_bath()
+        {
+            new Bath()
+                .AvailableActions().Select(x => x.GetType())
+                .Should().BeEquivalentTo(new[] { typeof(TakeAShower) });
+        }
+
+        [Fact]
+        public void Toilets_can_be_used_to_relieve_bladder()
+        {
+            new Toilet()
+                .AvailableActions().Select(x => x.GetType())
+                .Should().BeEquivalentTo(new[] { typeof(UseToilet) });
         }
     }
 }

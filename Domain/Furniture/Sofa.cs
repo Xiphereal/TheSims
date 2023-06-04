@@ -1,13 +1,14 @@
 ﻿using Domain.Actions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain.Furniture
 {
-    public class Sofa : ISleepable
+    public class Sofa : Sleepable
     {
-        public IEnumerable<IAction> AvailableActions()
+        public override IEnumerable<IAction> AvailableActions()
         {
-            throw new System.NotImplementedException();
+            return base.AvailableActions().Append(new Sit(this));
         }
     }
 }
