@@ -1,7 +1,7 @@
 ﻿﻿@startuml "Domain"
 skin rose
 
-Sim --> "8" Need
+Sim --> "8" Need : one per type
 Need <|-- Hunger
 Need <|-- Social
 Need <|-- Fun
@@ -15,10 +15,10 @@ Action --> "0..*" Need : satisfies
 Time --> Need : affects
 Sim --> Action : perform
 
-Lot o-- "0..*" Sim
-Lot o-- "0..*" Building
-Lot o-- "0..*" Furniture
-Lot o-- "0..*" Item
+Lot --> "0..*" Sim
+Lot --> "0..*" Building
+Lot --> "0..*" Furniture
+Lot -->"0..*" Item
 
 Furniture --> "0..*" Action : offers
 Item --> "0..*" Action : offers

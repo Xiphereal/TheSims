@@ -12,14 +12,10 @@ Sim --> Control
 ...
 
 Sim -> Sim : Perform(Action.MoveTo(point))
-Sim --> Control : <Event> \n MovingTowards(point)
+Sim --> Control : <<Event>> \n MovingTowards(point)
 
-Control --> Control : CanMove(sim, point)
-
-loop !IsThereYet(sim, point) && CanMove(sim)
-    alt 
-        Control --> Control : MoveTowards(sim, point)
-    end
+loop WillingToMove(sim, point) \n    && !IsThereYet(sim, point) \n    && CanMove(sim)
+    Control -> Control : MoveTowards(sim, point)
 end
 
 @enduml
