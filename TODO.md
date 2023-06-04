@@ -3,6 +3,7 @@
 - Add the rest of Needs.
 - Add different rates of increment of Needs depending of the specific Need.
 - Different Furnitures affect different to the Needs based on their stats.
+- Make laying to restore Comfort.
 
 ## Commands
 
