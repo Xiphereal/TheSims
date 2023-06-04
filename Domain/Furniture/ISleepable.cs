@@ -1,6 +1,6 @@
 ﻿namespace Domain.Furniture
 {
-    public interface ISleepable
+    public interface ISleepable : IInteractable
     {
     }
 }

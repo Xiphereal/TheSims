@@ -2,7 +2,7 @@
 
 namespace Domain.Actions
 {
-    public class Sleep : IAction
+    public struct Sleep : IAction
     {
         private ISleepable sleepable;
 

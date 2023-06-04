@@ -1,6 +1,6 @@
 ﻿namespace Domain.Furniture
 {
-    public interface IBladderRestorer
+    public interface IBladderRestorer : IInteractable
     {
     }
 }

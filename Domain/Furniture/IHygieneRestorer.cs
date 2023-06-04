@@ -1,6 +1,6 @@
 ﻿namespace Domain.Furniture
 {
-    public interface IHygieneRestorer
+    public interface IHygieneRestorer : IInteractable
     {
     }
 }
