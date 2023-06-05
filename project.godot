@@ -12,9 +12,8 @@ config_version=5
 
 config/name="The Sims"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.0", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.0", "Forward Plus")
 
 [dotnet]
 
-project/assembly_name="The Sims"
+project/assembly_name="Inputs"
