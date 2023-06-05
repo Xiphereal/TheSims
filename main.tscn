@@ -1,3 +1,41 @@
-[gd_scene format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=6 format=3 uid="uid://deypjsupvra4r"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_blxka"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h36at"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6x0y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ww1oi"]
+albedo_color = Color(0.0901961, 0.388235, 0.133333, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wkecx"]
+material = SubResource("StandardMaterial3D_ww1oi")
+size = Vector2(20, 20)
+
+[node name="Root" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.554844, 0.557764, -0.61729, 0, 0.741976, 0.670427, 0.831954, -0.371982, 0.411681, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Bed" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520129, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed"]
+shape = SubResource("BoxShape3D_blxka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed"]
+mesh = SubResource("BoxMesh_h36at")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_k6x0y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_wkecx")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(0.721615, -0.617572, 0.312852, 0, 0.451905, 0.892066, -0.692294, -0.643728, 0.326102, 1.78078, 3.5351, 1.4455)
