@@ -1,9 +1,5 @@
 [gd_scene load_steps=6 format=3 uid="uid://deypjsupvra4r"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_blxka"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_h36at"]
-
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6x0y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ww1oi"]
@@ -13,20 +9,15 @@ albedo_color = Color(0.0901961, 0.388235, 0.133333, 1)
 material = SubResource("StandardMaterial3D_ww1oi")
 size = Vector2(20, 20)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_blxka"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h36at"]
+
 [node name="Root" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.554844, 0.557764, -0.61729, 0, 0.741976, 0.670427, 0.831954, -0.371982, 0.411681, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Bed" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520129, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed"]
-shape = SubResource("BoxShape3D_blxka")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed"]
-mesh = SubResource("BoxMesh_h36at")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -39,3 +30,59 @@ mesh = SubResource("PlaneMesh_wkecx")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(0.721615, -0.536047, 0.438093, -7.45058e-09, 0.632813, 0.774304, -0.692294, -0.55875, 0.456648, 1.66684, 3.17442, 1.55481)
+
+[node name="Bed" type="Node3D" parent="."]
+
+[node name="Headboard" type="StaticBody3D" parent="Bed"]
+transform = Transform3D(0.405217, 0, 0, 0, 0.104406, 0, 0, 0, 0.829361, -0.751232, 0.452689, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Headboard"]
+shape = SubResource("BoxShape3D_blxka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Headboard"]
+mesh = SubResource("BoxMesh_h36at")
+
+[node name="Matress" type="StaticBody3D" parent="Bed"]
+transform = Transform3D(2.07237, 0, 0, 0, 0.152179, 0, 0, 0, 1, 0, 0.329434, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Matress"]
+shape = SubResource("BoxShape3D_blxka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Matress"]
+mesh = SubResource("BoxMesh_h36at")
+
+[node name="Leg1" type="StaticBody3D" parent="Bed"]
+transform = Transform3D(0.172877, 0, 0, 0, 0.25537, 0, 0, 0, 0.130284, 0.824523, 0.128754, -0.311487)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Leg1"]
+shape = SubResource("BoxShape3D_blxka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Leg1"]
+mesh = SubResource("BoxMesh_h36at")
+
+[node name="Leg2" type="StaticBody3D" parent="Bed"]
+transform = Transform3D(0.172877, 0, 0, 0, 0.25537, 0, 0, 0, 0.130284, 0.824523, 0.128754, 0.308062)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Leg2"]
+shape = SubResource("BoxShape3D_blxka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Leg2"]
+mesh = SubResource("BoxMesh_h36at")
+
+[node name="Leg3" type="StaticBody3D" parent="Bed"]
+transform = Transform3D(0.172877, 0, 0, 0, 0.25537, 0, 0, 0, 0.130284, -0.830436, 0.128754, 0.308062)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Leg3"]
+shape = SubResource("BoxShape3D_blxka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Leg3"]
+mesh = SubResource("BoxMesh_h36at")
+
+[node name="Leg4" type="StaticBody3D" parent="Bed"]
+transform = Transform3D(0.172877, 0, 0, 0, 0.25537, 0, 0, 0, 0.130284, -0.830436, 0.128754, -0.311486)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Leg4"]
+shape = SubResource("BoxShape3D_blxka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Leg4"]
+mesh = SubResource("BoxMesh_h36at")
