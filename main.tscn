@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=7 format=3 uid="uid://deypjsupvra4r"]
+
+[ext_resource type="Script" path="res://Code/Inputs/Bed.cs" id="1_g8pvp"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6x0y"]
 
@@ -32,6 +34,7 @@ mesh = SubResource("PlaneMesh_wkecx")
 transform = Transform3D(0.721615, -0.536047, 0.438093, -7.45058e-09, 0.632813, 0.774304, -0.692294, -0.55875, 0.456648, 1.66684, 3.17442, 1.55481)
 
 [node name="Bed" type="Node3D" parent="."]
+script = ExtResource("1_g8pvp")
 
 [node name="Headboard" type="StaticBody3D" parent="Bed"]
 transform = Transform3D(0.405217, 0, 0, 0, 0.104406, 0, 0, 0, 0.829361, -0.751232, 0.452689, 0)
