@@ -34,19 +34,11 @@ mesh = SubResource("PlaneMesh_wkecx")
 transform = Transform3D(0.721615, -0.536047, 0.438093, -7.45058e-09, 0.632813, 0.774304, -0.692294, -0.55875, 0.456648, 1.66684, 3.17442, 1.55481)
 
 [node name="Bed" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00713432, 0, -0.0285728)
 script = ExtResource("1_g8pvp")
 
-[node name="Headboard" type="StaticBody3D" parent="Bed"]
-transform = Transform3D(0.405217, 0, 0, 0, 0.104406, 0, 0, 0, 0.829361, -0.751232, 0.452689, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Headboard"]
-shape = SubResource("BoxShape3D_blxka")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Headboard"]
-mesh = SubResource("BoxMesh_h36at")
-
 [node name="Matress" type="StaticBody3D" parent="Bed"]
-transform = Transform3D(2.07237, 0, 0, 0, 0.152179, 0, 0, 0, 1, 0, 0.329434, 0)
+transform = Transform3D(0.946615, 0, 0, 0, 0.63085, 0, 0, 0, 1, 0, 0.329434, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Matress"]
 shape = SubResource("BoxShape3D_blxka")
@@ -54,38 +46,5 @@ shape = SubResource("BoxShape3D_blxka")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Matress"]
 mesh = SubResource("BoxMesh_h36at")
 
-[node name="Leg1" type="StaticBody3D" parent="Bed"]
-transform = Transform3D(0.172877, 0, 0, 0, 0.25537, 0, 0, 0, 0.130284, 0.824523, 0.128754, -0.311487)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Leg1"]
-shape = SubResource("BoxShape3D_blxka")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Leg1"]
-mesh = SubResource("BoxMesh_h36at")
-
-[node name="Leg2" type="StaticBody3D" parent="Bed"]
-transform = Transform3D(0.172877, 0, 0, 0, 0.25537, 0, 0, 0, 0.130284, 0.824523, 0.128754, 0.308062)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Leg2"]
-shape = SubResource("BoxShape3D_blxka")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Leg2"]
-mesh = SubResource("BoxMesh_h36at")
-
-[node name="Leg3" type="StaticBody3D" parent="Bed"]
-transform = Transform3D(0.172877, 0, 0, 0, 0.25537, 0, 0, 0, 0.130284, -0.830436, 0.128754, 0.308062)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Leg3"]
-shape = SubResource("BoxShape3D_blxka")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Leg3"]
-mesh = SubResource("BoxMesh_h36at")
-
-[node name="Leg4" type="StaticBody3D" parent="Bed"]
-transform = Transform3D(0.172877, 0, 0, 0, 0.25537, 0, 0, 0, 0.130284, -0.830436, 0.128754, -0.311486)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Leg4"]
-shape = SubResource("BoxShape3D_blxka")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Leg4"]
-mesh = SubResource("BoxMesh_h36at")
+[connection signal="mouse_entered" from="Bed/Matress" to="Bed" method="OnMatressMouseEntered"]
+[connection signal="mouse_exited" from="Bed/Matress" to="Bed" method="OnMatressMouseExited"]
