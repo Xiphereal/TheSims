@@ -1,14 +1,14 @@
-﻿using Domain.Actions;
-using Domain.Furniture;
+﻿using Domain;
+using Domain.Actions;
 using System.Collections.Generic;
 
 namespace Control
 {
     public class Player
     {
-        public IEnumerable<IAction> InteractWith(Bed bed)
+        public IEnumerable<IAction> InteractWith(IInteractable interactable)
         {
-            return bed.AvailableActions();
+            return interactable.AvailableActions();
         }
     }
 }
