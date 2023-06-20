@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Control.Tests", "Code\Contr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests", "Code\Domain\Tests\Domain.Tests.csproj", "{103FED25-7141-4253-BB6D-D130FC556CF5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inputs", "Inputs.csproj", "{498495DE-BFEB-4226-B8C1-AE55F13708D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheSims", "TheSims.csproj", "{498495DE-BFEB-4226-B8C1-AE55F13708D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{9EE39FED-C814-4A60-A0AB-EC8DF8995A35}"
 	ProjectSection(SolutionItems) = preProject

@@ -16,4 +16,4 @@ config/features=PackedStringArray("4.0", "Forward Plus")
 
 [dotnet]
 
-project/assembly_name="Inputs"
+project/assembly_name="TheSims"
