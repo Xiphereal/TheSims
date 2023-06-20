@@ -27,7 +27,6 @@ shadow_enabled = true
 shape = SubResource("WorldBoundaryShape3D_k6x0y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0788897, 0, 0)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_wkecx")
 
@@ -35,17 +34,18 @@ mesh = SubResource("PlaneMesh_wkecx")
 transform = Transform3D(0.721615, -0.536047, 0.438093, -7.45058e-09, 0.632813, 0.774304, -0.692294, -0.55875, 0.456648, 1.66684, 3.17442, 1.55481)
 
 [node name="Bed" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00713432, 0, -0.0285728)
+transform = Transform3D(1, 0, 0, 0, 0.19961, 0, 0, 0, 1.53923, 0, 0.238504, 0)
 script = ExtResource("1_g8pvp")
 
 [node name="Matress" type="StaticBody3D" parent="Bed"]
-transform = Transform3D(0.946615, 0, 0, 0, 0.63085, 0, 0, 0, 1, 0, 0.329434, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Matress"]
+[node name="Area3D" type="Area3D" parent="Bed/Matress"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Matress/Area3D"]
 shape = SubResource("BoxShape3D_blxka")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Matress"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_h36at")
 
-[connection signal="mouse_entered" from="Bed/Matress" to="Bed" method="OnMatressMouseEntered"]
-[connection signal="mouse_exited" from="Bed/Matress" to="Bed" method="OnMatressMouseExited"]
+[connection signal="input_event" from="Bed/Matress/Area3D" to="Bed" method="OnAreaInputEvent"]
