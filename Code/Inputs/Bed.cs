@@ -43,10 +43,8 @@ namespace Godot
 
                 const float Radius = 100f;
 
-                Vector2 labelPosition =
-                    GetViewport().GetMousePosition()
-                        + new Vector2(Radius * Mathf.Cos(angle), Radius * Mathf.Sin(angle));
-                return labelPosition;
+                return GetViewport().GetMousePosition()
+                    + new Vector2(Radius * Mathf.Cos(angle), Radius * Mathf.Sin(angle));
             }
 
             void AddActionButtonAsChild(Action @for, Vector2 at)
