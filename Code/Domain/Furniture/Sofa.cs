@@ -6,7 +6,7 @@ namespace Domain.Furniture
 {
     public class Sofa : Sleepable
     {
-        public override IEnumerable<IAction> AvailableActions()
+        public override IEnumerable<Action> AvailableActions()
         {
             return base.AvailableActions().Append(new Sit(this));
         }

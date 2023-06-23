@@ -1,8 +1,10 @@
 ﻿namespace Domain.Actions
 {
-    public struct Lay : IAction
+    public class Lay : Action
     {
-        public void Perform(Sim performer)
+        public override string Name => nameof(Lay);
+
+        public override void Perform(Sim performer)
         {
             performer.Sleep();
         }

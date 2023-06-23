@@ -6,7 +6,7 @@ namespace Control
 {
     public class Player
     {
-        public IEnumerable<IAction> InteractWith(IInteractable interactable)
+        public IEnumerable<Action> InteractWith(IInteractable interactable)
         {
             return interactable.AvailableActions();
         }

@@ -7,7 +7,7 @@ namespace Domain
 {
     public class Sim
     {
-        private Queue<IAction> actions = new();
+        private Queue<Action> actions = new();
 
         public int Hunger => Needs.Hunger;
         public int Hygiene => Needs.Hygiene;
@@ -21,12 +21,12 @@ namespace Domain
             Needs = needs;
         }
 
-        public void Command(IAction action)
+        public void Command(Action action)
         {
             actions.Enqueue(action);
         }
 
-        public void Cancel(IAction action)
+        public void Cancel(Action action)
         {
             actions = actions.Without(action);
         }
@@ -37,7 +37,7 @@ namespace Domain
                 Perform(actions.Dequeue());
         }
 
-        public void Perform(IAction action)
+        public void Perform(Action action)
         {
             action.Perform(performer: this);
         }

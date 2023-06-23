@@ -2,7 +2,7 @@
 
 namespace Domain.Actions
 {
-    public class UseToilet : IAction
+    public class UseToilet : Action
     {
         private IBladderRestorer bladderRestorer;
 
@@ -11,7 +11,9 @@ namespace Domain.Actions
             this.bladderRestorer = bladderRestorer;
         }
 
-        public void Perform(Sim performer)
+        public override string Name => nameof(UseToilet);
+
+        public override void Perform(Sim performer)
         {
             performer.RestoreBladder();
         }

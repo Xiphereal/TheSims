@@ -21,7 +21,7 @@ namespace Godot
                 // TODO: Move this to be always called on any mouse click, not only on this Area.
                 RemovePreviousOptions();
 
-                IEnumerable<IAction> options = player.InteractWith(new Domain.Furniture.Bed());
+                IEnumerable<Action> options = player.InteractWith(new Domain.Furniture.Bed());
                 DistributeAroundMouse(options);
             }
         }
@@ -31,7 +31,7 @@ namespace Godot
             GetChildren().OfType<Button>().ToList().ForEach(x => x.QueueFree());
         }
 
-        private void DistributeAroundMouse(IEnumerable<IAction> options)
+        private void DistributeAroundMouse(IEnumerable<Action> options)
         {
             for (int i = 0; i < options.Count(); i++)
             {

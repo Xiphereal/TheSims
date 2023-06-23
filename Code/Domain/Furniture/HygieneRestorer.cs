@@ -5,6 +5,6 @@ namespace Domain.Furniture
 {
     public abstract class HygieneRestorer : IInteractable
     {
-        public IEnumerable<IAction> AvailableActions() => new List<IAction> { new TakeAShower(this) };
+        public IEnumerable<Action> AvailableActions() => new List<Action> { new TakeAShower(this) };
     }
 }

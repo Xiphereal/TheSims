@@ -2,7 +2,7 @@
 
 namespace Domain.Actions
 {
-    public struct Sleep : IAction
+    public class Sleep : Action
     {
         private Sleepable sleepable;
 
@@ -11,7 +11,9 @@ namespace Domain.Actions
             sleepable = on;
         }
 
-        public void Perform(Sim performer)
+        public override string Name => nameof(Sleep);
+
+        public override void Perform(Sim performer)
         {
             performer.Sleep();
         }

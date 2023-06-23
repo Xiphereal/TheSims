@@ -5,6 +5,6 @@ namespace Domain
 {
     public interface IInteractable
     {
-        IEnumerable<IAction> AvailableActions();
+        IEnumerable<Action> AvailableActions();
     }
 }

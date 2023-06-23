@@ -2,7 +2,7 @@
 
 namespace Domain.Actions
 {
-    public class Sit : IAction
+    public class Sit : Action
     {
         private Sofa on;
 
@@ -11,7 +11,9 @@ namespace Domain.Actions
             this.on = on;
         }
 
-        public void Perform(Sim performer)
+        public override string Name => nameof(Sit);
+
+        public override void Perform(Sim performer)
         {
             performer.RestoreComfort();
         }

@@ -3,7 +3,7 @@
 namespace Domain.Actions
 {
     // TODO: Is there a common term between taking a shower and a bath?
-    public class TakeAShower : IAction
+    public class TakeAShower : Action
     {
         private HygieneRestorer hygieneRestorer;
 
@@ -12,7 +12,9 @@ namespace Domain.Actions
             this.hygieneRestorer = hygieneRestorer;
         }
 
-        public void Perform(Sim performer)
+        public override string Name => nameof(TakeAShower);
+
+        public override void Perform(Sim performer)
         {
             performer.RestoreHygiene();
         }

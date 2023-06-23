@@ -5,6 +5,6 @@ namespace Domain.Furniture
 {
     public class Toilet : IBladderRestorer
     {
-        public IEnumerable<IAction> AvailableActions() => new List<IAction> { new UseToilet(this) };
+        public IEnumerable<Action> AvailableActions() => new List<Action> { new UseToilet(this) };
     }
 }

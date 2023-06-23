@@ -6,9 +6,9 @@ namespace Domain.Extensions
 {
     internal static class QueueExtensions
     {
-        public static Queue<IAction> Without(this Queue<IAction> actions, IAction action)
+        public static Queue<Action> Without(this Queue<Action> actions, Action action)
         {
-            return new Queue<IAction>(actions.Where(x => !x.Equals(action)));
+            return new Queue<Action>(actions.Where(x => !x.Equals(action)));
         }
     }
 }
