@@ -28,7 +28,7 @@ namespace Godot
 
         private void RemovePreviousOptions()
         {
-            GetChildren().OfType<Label>().ToList().ForEach(x => x.QueueFree());
+            GetChildren().OfType<Button>().ToList().ForEach(x => x.QueueFree());
         }
 
         private void DistributeAroundMouse(IEnumerable<IAction> options)
@@ -48,7 +48,7 @@ namespace Godot
                 // with an offset to the right. I have no idea why.
                 labelPosition = FixOffset(labelPosition);
 
-                AddChild(new Label
+                AddChild(new Button
                 {
                     Text = options.ElementAt(i).ToString(),
                     Position = labelPosition,
