@@ -42,25 +42,15 @@ namespace Godot
 
                 Vector2 labelPosition =
                     GetViewport().GetMousePosition()
-                    + new Vector2(Radius * Mathf.Cos(angle), Radius * Mathf.Sin(angle));
+                        + new Vector2(Radius * Mathf.Cos(angle), Radius * Mathf.Sin(angle));
 
-                // With the given approach, the options do not appear centered at the mouse, but
-                // with an offset to the right. I have no idea why.
-                labelPosition = FixOffset(labelPosition);
-
-                AddChild(new Button
+                ActionButton button = new()
                 {
                     Text = options.ElementAt(i).ToString(),
                     Position = labelPosition,
-                });
-            }
-
-            static Vector2 FixOffset(Vector2 labelPosition)
-            {
-                labelPosition += Vector2.Left * 75;
-                labelPosition += Vector2.Up * 10;
-
-                return labelPosition;
+                };
+                button.Pressed += RemovePreviousOptions;
+                AddChild(button);
             }
         }
     }
