@@ -37,15 +37,15 @@ transform = Transform3D(0.721615, -0.536047, 0.438093, -7.45058e-09, 0.632813, 0
 transform = Transform3D(1, 0, 0, 0, 0.19961, 0, 0, 0, 1.53923, 0, 0.238504, 0)
 script = ExtResource("1_g8pvp")
 
-[node name="Matress" type="StaticBody3D" parent="Bed"]
+[node name="Area3D" type="Area3D" parent="Bed"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Area3D" type="Area3D" parent="Bed/Matress"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Matress/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Area3D"]
 shape = SubResource("BoxShape3D_blxka")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed/Matress"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bed"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_h36at")
+skeleton = NodePath("")
 
-[connection signal="input_event" from="Bed/Matress/Area3D" to="Bed" method="OnAreaInputEvent"]
+[connection signal="input_event" from="Bed/Area3D" to="Bed" method="OnAreaInputEvent"]
