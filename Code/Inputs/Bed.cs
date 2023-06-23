@@ -14,13 +14,16 @@ namespace Godot
             player = new Player();
         }
 
+        public override void _Input(InputEvent @event)
+        {
+            if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
+                RemovePreviousOptions();
+        }
+
         public void OnAreaInputEvent(Node camera, InputEvent @event, Vector3 position, Vector3 normal, long shapeIdx)
         {
             if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
             {
-                // TODO: Move this to be always called on any mouse click, not only on this Area.
-                RemovePreviousOptions();
-
                 IEnumerable<Action> options = player.InteractWith(new Domain.Furniture.Bed());
                 DistributeAroundMouse(options);
             }
