@@ -34,6 +34,9 @@ namespace Godot
         private void DistributeAroundMouse(IEnumerable<Action> options)
         {
             for (int i = 0; i < options.Count(); i++)
+                AddActionButtonAsChild(@for: options.ElementAt(i), at: CalculatePosition(options, i));
+
+            Vector2 CalculatePosition(IEnumerable<Action> options, int i)
             {
                 float angleBetweenOptions = 360f / options.Count();
                 float angle = Mathf.DegToRad(angleBetweenOptions * i);
@@ -43,11 +46,15 @@ namespace Godot
                 Vector2 labelPosition =
                     GetViewport().GetMousePosition()
                         + new Vector2(Radius * Mathf.Cos(angle), Radius * Mathf.Sin(angle));
+                return labelPosition;
+            }
 
+            void AddActionButtonAsChild(Action @for, Vector2 at)
+            {
                 ActionButton button = new()
                 {
-                    Text = options.ElementAt(i).ToString(),
-                    Position = labelPosition,
+                    Text = @for.ToString(),
+                    Position = at,
                 };
                 button.Pressed += RemovePreviousOptions;
                 AddChild(button);
