@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://thh26uferhtv"]
+
+[ext_resource type="Script" path="res://Code/Inputs/Bed.cs" id="1_xhl0w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_blxka"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h36at"]
+
+[node name="Bed" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.19961, 0, 0, 0, 1.53923, 0, 0.238504, 0)
+script = ExtResource("1_xhl0w")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_blxka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_h36at")
+skeleton = NodePath("")
+
+[connection signal="input_event" from="Area3D" to="." method="OnAreaInputEvent"]
