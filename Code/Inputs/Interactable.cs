@@ -33,7 +33,7 @@ namespace Godot
 
         protected virtual IInteractable GetInteractable()
         {
-            throw new NotImplementedException("This should be overriden");
+            throw new NotImplementedException("This should be overridden");
         }
 
         private void RemovePreviousOptions()
