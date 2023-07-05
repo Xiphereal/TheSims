@@ -1,4 +1,7 @@
-﻿using Domain.Furniture;
+﻿using Domain.Actions;
+using Domain.Furniture;
+using FluentAssertions;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Control.Tests.UnitTests
@@ -6,11 +9,14 @@ namespace Control.Tests.UnitTests
     public class PlayerTests
     {
         [Fact]
-        public void TestName()
+        public void Available_actions_for_interactable_can_be_queried()
         {
-            var sut = new Player();
+            Player sut = new();
+            Bed anyInteractable = new();
 
-            sut.InteractWith(new Bed());
+            IEnumerable<Action> result = sut.InteractWith(anyInteractable);
+
+            result.Should().NotBeEmpty();
         }
     }
 }
