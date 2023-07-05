@@ -1,6 +1,6 @@
 ﻿namespace Domain.Tests.Builders
 {
-    internal class SimBuilder
+    public class SimBuilder
     {
         private int hunger = 100;
         private int hygiene = 100;

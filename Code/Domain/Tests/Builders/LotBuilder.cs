@@ -1,6 +1,6 @@
 ﻿namespace Domain.Tests.Builders
 {
-    internal class LotBuilder
+    public class LotBuilder
     {
         private Time time;
 
