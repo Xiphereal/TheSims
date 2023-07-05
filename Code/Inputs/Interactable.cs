@@ -1,8 +1,8 @@
+using Control;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Control;
-using Domain;
 using Action = Domain.Actions.Action;
 
 namespace Godot
@@ -22,6 +22,11 @@ namespace Godot
                 RemovePreviousOptions();
         }
 
+        private void RemovePreviousOptions()
+        {
+            GetChildren().OfType<Button>().ToList().ForEach(x => x.QueueFree());
+        }
+
         public void OnAreaInputEvent(Node camera, InputEvent @event, Vector3 position, Vector3 normal, long shapeIdx)
         {
             if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
@@ -34,11 +39,6 @@ namespace Godot
         protected virtual IInteractable GetInteractable()
         {
             throw new NotImplementedException("This should be overridden");
-        }
-
-        private void RemovePreviousOptions()
-        {
-            GetChildren().OfType<Button>().ToList().ForEach(x => x.QueueFree());
         }
 
         private void DistributeAroundMouse(IEnumerable<Action> options)
@@ -64,9 +64,27 @@ namespace Godot
                     Text = @for.ToString(),
                     Position = at,
                 };
+
                 button.Pressed += RemovePreviousOptions;
+                button.Pressed += () => CommandToActiveSim(@for);
+
                 AddChild(button);
             }
+        }
+
+        private void CommandToActiveSim(Action action)
+        {
+            AddChild(new TextureRect()
+            {
+                Texture = GetImageForAction()
+            });
+
+            player.Command(action);
+        }
+
+        protected virtual Texture2D GetImageForAction()
+        {
+            throw new NotImplementedException("This should be overridden");
         }
     }
 }
