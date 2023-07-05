@@ -11,7 +11,7 @@ namespace Domain.Actions
             sleepable = on;
         }
 
-        public override string Name => nameof(Sleep);
+        protected override string Name => nameof(Sleep);
 
         public override void Perform(Sim performer)
         {

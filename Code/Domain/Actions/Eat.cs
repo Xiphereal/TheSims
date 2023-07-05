@@ -2,7 +2,7 @@
 {
     public class Eat : Action
     {
-        public override string Name => nameof(Eat);
+        protected override string Name => nameof(Eat);
 
         public override void Perform(Sim performer)
         {

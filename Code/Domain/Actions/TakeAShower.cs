@@ -12,7 +12,7 @@ namespace Domain.Actions
             this.hygieneRestorer = hygieneRestorer;
         }
 
-        public override string Name => nameof(TakeAShower);
+        protected override string Name => nameof(TakeAShower);
 
         public override void Perform(Sim performer)
         {
