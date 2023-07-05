@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=8 format=3 uid="uid://deypjsupvra4r"]
 
 [ext_resource type="Script" path="res://Code/Inputs/Bed.cs" id="1_g8pvp"]
+[ext_resource type="Script" path="res://Code/Inputs/Refrigerator.cs" id="2_mj7eq"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6x0y"]
 
@@ -43,7 +44,23 @@ script = ExtResource("1_g8pvp")
 shape = SubResource("BoxShape3D_blxka")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Bed"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_h36at")
+skeleton = NodePath("")
+
+[node name="Refrigerator" type="Node3D" parent="."]
+transform = Transform3D(0.480477, 0, -0.407079, 0, 1.41175, 0, 0.624363, 0, 0.313267, 0.713877, 0.731658, -1.70599)
+script = ExtResource("2_mj7eq")
+
+[node name="Area3D" type="Area3D" parent="Refrigerator"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Refrigerator/Area3D"]
+shape = SubResource("BoxShape3D_blxka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Refrigerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_h36at")
 skeleton = NodePath("")
 
 [connection signal="input_event" from="Bed/Area3D" to="Bed" method="OnAreaInputEvent"]
+[connection signal="input_event" from="Refrigerator/Area3D" to="Refrigerator" method="OnAreaInputEvent"]
