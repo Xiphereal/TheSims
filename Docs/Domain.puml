@@ -18,7 +18,9 @@ Sim --> Action : perform
 Lot --> "0..*" Sim
 Lot --> "0..*" Building
 Lot --> "0..*" Furniture
-Lot -->"0..*" Item
+Lot --> "0..*" Item
+
+Family --> "1..*" Sim
 
 Furniture --> "0..*" Action : offers
 Item --> "0..*" Action : offers
