@@ -22,6 +22,9 @@ Lot --> "0..*" Item
 
 Family --> "1..*" Sim
 
+Player --> "1" Family : controls
+Player --> "1" Sim : active
+
 Furniture --> "0..*" Action : offers
 Item --> "0..*" Action : offers
 
