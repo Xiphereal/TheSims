@@ -6,7 +6,7 @@ namespace Godot
     {
         protected override IInteractable GetInteractable()
         {
-            return new Domain.Furniture.Refrigerator();
+            return new Domain.Furniture.Refrigerator(hunger: 10);
         }
     }
 }

@@ -1,13 +1,21 @@
-﻿namespace Domain.Actions
+﻿using Domain.Furniture;
+
+namespace Domain.Actions
 {
     public class Eat : Action
     {
+        private readonly Refrigerator refrigerator;
+
+        public Eat(Refrigerator from)
+        {
+            refrigerator = from;
+        }
+
         protected override string Name => nameof(Eat);
 
         public override void Perform(Sim performer)
         {
-            // TODO: Review how to parameterize the Food to be eaten.
-            performer.Eat(new Food(10));
+            performer.Eat(refrigerator.Food);
         }
     }
 }

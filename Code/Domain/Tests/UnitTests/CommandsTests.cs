@@ -60,6 +60,19 @@ namespace Domain.Tests.UnitTests
             sim.Comfort.Should().BeCloseTo(initialComfort, delta: 5);
         }
 
+        [Theory]
+        [InlineData(10)]
+        [InlineData(20)]
+        public void Eating_replenish_hunger_depending_on_the_Refrigerator_used(int refrigeratorHunger)
+        {
+            const int initialHunger = 80;
+            Sim sim = Builders.SimBuilder.Sim().WithHunger(initialHunger).Build();
+
+            new Eat(from: new Refrigerator(hunger: refrigeratorHunger)).Perform(sim);
+
+            sim.Hunger.Should().Be(initialHunger + refrigeratorHunger);
+        }
+
         [Fact]
         public void Beds_can_be_used_to_lie_down_and_sleep()
         {
