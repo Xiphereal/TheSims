@@ -44,13 +44,13 @@ script = ExtResource("1_g8pvp")
 shape = SubResource("BoxShape3D_blxka")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Bed"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_h36at")
 skeleton = NodePath("")
 
 [node name="Refrigerator" type="Node3D" parent="."]
 transform = Transform3D(0.480477, 0, -0.407079, 0, 1.41175, 0, 0.624363, 0, 0.313267, 0.713877, 0.731658, -1.70599)
 script = ExtResource("2_mj7eq")
+hunger = 20
 
 [node name="Area3D" type="Area3D" parent="Refrigerator"]
 
@@ -58,7 +58,6 @@ script = ExtResource("2_mj7eq")
 shape = SubResource("BoxShape3D_blxka")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Refrigerator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_h36at")
 skeleton = NodePath("")
 
