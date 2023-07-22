@@ -9,13 +9,6 @@ namespace Godot
 {
     public partial class Interactable : Node3D
     {
-        private Player player;
-
-        public override void _Ready()
-        {
-            player = new Player();
-        }
-
         public override void _UnhandledInput(InputEvent @event)
         {
             if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
@@ -31,9 +24,14 @@ namespace Godot
         {
             if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
             {
-                IEnumerable<Action> options = player.InteractWith(GetInteractable());
+                IEnumerable<Action> options = FindPlayer().InteractWith(GetInteractable());
                 DistributeAroundMouse(options);
             }
+        }
+
+        private Player FindPlayer()
+        {
+            return GetNode<PlayerInput>("../Player").Player;
         }
 
         protected virtual IInteractable GetInteractable()
@@ -79,7 +77,7 @@ namespace Godot
                 Texture = GetImageForAction()
             });
 
-            player.Command(action);
+            FindPlayer().Command(action);
         }
 
         protected virtual Texture2D GetImageForAction()

@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=11 format=3 uid="uid://deypjsupvra4r"]
 
 [ext_resource type="PackedScene" uid="uid://thh26uferhtv" path="res://Scenes/bed.tscn" id="1_q408g"]
 [ext_resource type="PackedScene" uid="uid://bj08b2mxksoof" path="res://Scenes/refrigerator.tscn" id="2_0wiyi"]
 [ext_resource type="Texture2D" uid="uid://yu0ro6jly7lp" path="res://Resources/Images/ActionsIcons/Refrigerator.png" id="2_060wi"]
+[ext_resource type="Script" path="res://Code/Inputs/SimInput.cs" id="4_vrrh7"]
+[ext_resource type="Script" path="res://Code/Inputs/PlayerInput.cs" id="5_txm3g"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6x0y"]
 
@@ -12,6 +14,10 @@ albedo_color = Color(0.0901961, 0.388235, 0.133333, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_wkecx"]
 material = SubResource("StandardMaterial3D_ww1oi")
 size = Vector2(20, 20)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m0ccm"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ali21"]
 
 [node name="Root" type="Node3D"]
 
@@ -37,3 +43,16 @@ imageForAction = ExtResource("2_060wi")
 [node name="Refrigerator" parent="." instance=ExtResource("2_0wiyi")]
 transform = Transform3D(-0.410189, 0, 0.43855, 0, 1.41175, 0, -0.672631, 0, -0.26744, -2.03191, 0.68703, 1.23067)
 imageForAction = ExtResource("2_060wi")
+
+[node name="Sim" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.455, 0, 0, 0, 0.455, 0, 0, 0, 0.455, -0.514557, 0.466428, 1.83764)
+script = ExtResource("4_vrrh7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sim"]
+shape = SubResource("CapsuleShape3D_m0ccm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sim"]
+mesh = SubResource("CapsuleMesh_ali21")
+
+[node name="Player" type="Node3D" parent="."]
+script = ExtResource("5_txm3g")
