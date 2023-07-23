@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=12 format=3 uid="uid://deypjsupvra4r"]
 
 [ext_resource type="PackedScene" uid="uid://thh26uferhtv" path="res://Scenes/bed.tscn" id="1_q408g"]
 [ext_resource type="PackedScene" uid="uid://bj08b2mxksoof" path="res://Scenes/refrigerator.tscn" id="2_0wiyi"]
 [ext_resource type="Texture2D" uid="uid://yu0ro6jly7lp" path="res://Resources/Images/ActionsIcons/Refrigerator.png" id="2_060wi"]
 [ext_resource type="Script" path="res://Code/Inputs/SimInput.cs" id="4_vrrh7"]
 [ext_resource type="Script" path="res://Code/Inputs/PlayerInput.cs" id="5_txm3g"]
+[ext_resource type="Script" path="res://Code/Inputs/UI.cs" id="6_2m6bx"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6x0y"]
 
@@ -65,6 +66,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("6_2m6bx")
 
 [node name="ActionsQueue" type="HBoxContainer" parent="UI"]
 layout_mode = 1
