@@ -18,6 +18,11 @@ namespace Control
             activeSim.Command(action);
         }
 
+        public void Cancel(Action action)
+        {
+            activeSim.Cancel(action);
+        }
+
         public IEnumerable<Action> InteractWith(IInteractable interactable)
         {
             return interactable.AvailableActions();

@@ -72,10 +72,17 @@ namespace Godot
 
         private void CommandToActiveSim(Action action)
         {
-            AddChild(new Button()
+            Button button = new()
             {
                 Icon = GetImageForAction()
-            });
+            };
+            button.Pressed += () =>
+            {
+                button.QueueFree();
+                FindPlayer().Cancel(action);
+            };
+
+            AddChild(button);
 
             FindPlayer().Command(action);
         }
