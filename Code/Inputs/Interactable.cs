@@ -72,9 +72,9 @@ namespace Godot
 
         private void CommandToActiveSim(Action action)
         {
-            AddChild(new TextureRect()
+            AddChild(new Button()
             {
-                Texture = GetImageForAction()
+                Icon = GetImageForAction()
             });
 
             FindPlayer().Command(action);
