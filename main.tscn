@@ -56,3 +56,17 @@ mesh = SubResource("CapsuleMesh_ali21")
 
 [node name="Player" type="Node3D" parent="."]
 script = ExtResource("5_txm3g")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ActionsQueue" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+offset_right = 564.0
+offset_bottom = 69.0

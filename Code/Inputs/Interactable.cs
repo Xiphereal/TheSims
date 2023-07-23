@@ -17,7 +17,12 @@ namespace Godot
 
         private void RemovePreviousOptions()
         {
-            GetChildren().OfType<Button>().ToList().ForEach(x => x.QueueFree());
+            FindUI().GetChildren().OfType<Button>().ToList().ForEach(x => x.QueueFree());
+        }
+
+        private Control FindUI()
+        {
+            return GetNode<Control>("/root/Root/UI");
         }
 
         public void OnAreaInputEvent(Node camera, InputEvent @event, Vector3 position, Vector3 normal, long shapeIdx)
@@ -42,7 +47,7 @@ namespace Godot
         private void DistributeAroundMouse(IEnumerable<Action> options)
         {
             for (int i = 0; i < options.Count(); i++)
-                AddActionButtonAsChild(@for: options.ElementAt(i), at: CalculatePosition(options, i));
+                CreateActionButton(@for: options.ElementAt(i), at: CalculatePosition(options, i));
 
             Vector2 CalculatePosition(IEnumerable<Action> options, int i)
             {
@@ -55,7 +60,7 @@ namespace Godot
                     + new Vector2(Radius * Mathf.Cos(angle), Radius * Mathf.Sin(angle));
             }
 
-            void AddActionButtonAsChild(Action @for, Vector2 at)
+            void CreateActionButton(Action @for, Vector2 at)
             {
                 ActionButton button = new()
                 {
@@ -66,7 +71,7 @@ namespace Godot
                 button.Pressed += RemovePreviousOptions;
                 button.Pressed += () => CommandToActiveSim(@for);
 
-                AddChild(button);
+                FindUI().AddChild(button);
             }
         }
 
@@ -82,9 +87,14 @@ namespace Godot
                 FindPlayer().Cancel(action);
             };
 
-            AddChild(button);
+            FindActionsQueue().AddChild(button);
 
             FindPlayer().Command(action);
+        }
+
+        private Control FindActionsQueue()
+        {
+            return GetNode<Control>("/root/Root/UI/ActionsQueue");
         }
 
         protected virtual Texture2D GetImageForAction()
