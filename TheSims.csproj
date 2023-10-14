@@ -1,9 +1,8 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.1.1">
+﻿<Project Sdk="Godot.NET.Sdk/4.1.2">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<EnableDynamicLoading>true</EnableDynamicLoading>
-
 		<!-- TODO: The filename of this csproj is the same as the sln one. 
 			 This is due to a Godot restriction that is being worked on https://github.com/godotengine/godot/pull/77822. -->
 		<RootNamespace>Inputs</RootNamespace>
