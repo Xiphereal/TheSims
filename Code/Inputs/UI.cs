@@ -51,7 +51,13 @@ namespace Godot
 
         private void CommandToActiveSim(Action action, Texture2D imageForIcons)
         {
-            Button button = new() { Icon = imageForIcons };
+            Button button = new()
+            {
+                Icon = imageForIcons,
+                ExpandIcon = true,
+                Flat = true,
+                CustomMinimumSize = new Vector2(120, 120),
+            };
             button.Pressed += () =>
             {
                 button.QueueFree();
