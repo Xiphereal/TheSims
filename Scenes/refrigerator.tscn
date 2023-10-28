@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bj08b2mxksoof"]
+[gd_scene load_steps=5 format=3 uid="uid://bj08b2mxksoof"]
 
 [ext_resource type="Script" path="res://Code/Inputs/Refrigerator.cs" id="1_6n23c"]
+[ext_resource type="Texture2D" uid="uid://yu0ro6jly7lp" path="res://Resources/Images/ActionsIcons/Refrigerator.png" id="2_l083y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_blxka"]
 
@@ -10,6 +11,7 @@
 transform = Transform3D(0.787837, 0, 0, 0, 1.41175, 0, 0, 0, 0.513663, 0, 0.68703, 0)
 script = ExtResource("1_6n23c")
 hunger = 20
+imageForAction = ExtResource("2_l083y")
 
 [node name="Area3D" type="Area3D" parent="."]
 

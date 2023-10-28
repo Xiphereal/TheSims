@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://thh26uferhtv"]
+[gd_scene load_steps=5 format=3 uid="uid://thh26uferhtv"]
 
 [ext_resource type="Script" path="res://Code/Inputs/Bed.cs" id="1_xhl0w"]
+[ext_resource type="Texture2D" uid="uid://bgbyoammpg7ns" path="res://Resources/Images/ActionsIcons/Bed.png" id="2_gggyx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_blxka"]
 
@@ -9,6 +10,7 @@
 [node name="Bed" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 0.19961, 0, 0, 0, 1.53923, 0, 0.238504, 0)
 script = ExtResource("1_xhl0w")
+imageForAction = ExtResource("2_gggyx")
 
 [node name="Area3D" type="Area3D" parent="."]
 
