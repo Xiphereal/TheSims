@@ -12,7 +12,7 @@ namespace Domain
             this.point = point;
         }
 
-        protected override string Name => throw new System.NotImplementedException();
+        protected override string Name => "Move here";
 
         public override void Perform(Sim performer)
         {

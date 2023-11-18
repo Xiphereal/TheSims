@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=13 format=3 uid="uid://deypjsupvra4r"]
 
 [ext_resource type="PackedScene" uid="uid://thh26uferhtv" path="res://Scenes/bed.tscn" id="1_q408g"]
+[ext_resource type="Script" path="res://Code/Inputs/Floor.cs" id="1_uv3ld"]
 [ext_resource type="PackedScene" uid="uid://bj08b2mxksoof" path="res://Scenes/refrigerator.tscn" id="2_0wiyi"]
+[ext_resource type="Texture2D" uid="uid://bvmiuelovw0wa" path="res://Resources/Images/ActionsIcons/MoveHere.png" id="2_ntcnx"]
 [ext_resource type="Script" path="res://Code/Inputs/SimInput.cs" id="4_vrrh7"]
 [ext_resource type="Script" path="res://Code/Inputs/PlayerInput.cs" id="5_txm3g"]
 [ext_resource type="Script" path="res://Code/Inputs/UI.cs" id="6_2m6bx"]
@@ -26,8 +28,12 @@ transform = Transform3D(0.554844, 0.557764, -0.61729, 0, 0.741976, 0.670427, 0.8
 shadow_enabled = true
 
 [node name="Floor" type="StaticBody3D" parent="."]
+script = ExtResource("1_uv3ld")
+imageForAction = ExtResource("2_ntcnx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="Area3D" type="Area3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Area3D"]
 shape = SubResource("WorldBoundaryShape3D_k6x0y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
@@ -69,3 +75,5 @@ script = ExtResource("6_2m6bx")
 layout_mode = 1
 offset_right = 564.0
 offset_bottom = 69.0
+
+[connection signal="input_event" from="Floor/Area3D" to="Floor" method="OnAreaInputEvent"]
