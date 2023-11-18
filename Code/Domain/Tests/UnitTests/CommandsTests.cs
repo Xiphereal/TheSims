@@ -3,6 +3,7 @@ using Domain.Furniture;
 using FluentAssertions;
 using System;
 using System.Linq;
+using System.Numerics;
 using Xunit;
 using static Domain.Tests.Builders.LotBuilder;
 using static Domain.Tests.Builders.SimBuilder;
@@ -111,6 +112,16 @@ namespace Domain.Tests.UnitTests
             new Toilet()
                 .AvailableActions().Select(x => x.GetType())
                 .Should().BeEquivalentTo(new[] { typeof(UseToilet) });
+        }
+
+        [Fact]
+        public void Sim_can_move_to_point()
+        {
+            Vector3 point = new(x: 1, y: 1, z: 1);
+
+            new Floor(point: point)
+                .AvailableActions()
+                .Should().BeEquivalentTo(new[] { new MoveTo(point) });
         }
     }
 }
