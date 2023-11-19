@@ -5,24 +5,24 @@ namespace Domain
 {
     public class MoveTo : Action
     {
-        private Vector3 point;
+        private Vector3 destination;
 
-        public MoveTo(Vector3 point)
+        public MoveTo(Vector3 destination)
         {
-            this.point = point;
+            this.destination = destination;
         }
 
         protected override string Name => "Move here";
 
         public override void Perform(Sim performer)
         {
-            throw new System.NotImplementedException();
+            performer.Position = destination;
         }
 
         public override bool Equals(object other)
         {
             return other is MoveTo otherMoveTo
-                && point.Equals(otherMoveTo.point);
+                && destination.Equals(otherMoveTo.destination);
         }
     }
 }

@@ -61,6 +61,37 @@ namespace Domain.Tests.UnitTests
             sim.Comfort.Should().BeCloseTo(initialComfort, delta: 5);
         }
 
+        [Fact]
+        public void Sim_can_be_commanded_to_move_to_point()
+        {
+            Vector3 point = new(x: 1, y: 1, z: 1);
+
+            new Floor(point)
+                .AvailableActions()
+                .Should().BeEquivalentTo(new[] { new MoveTo(point) });
+        }
+
+        [Fact]
+        public void Sim_can_reach_destination_by_moving()
+        {
+            // Arrange.
+            Time time = new();
+            Lot lot = Lot().With(time).Build();
+            Sim sim = Sim().Build();
+            lot.EnteredBy(sim);
+
+            sim.Position = Vector3.Zero;
+
+            Vector3 destination = Vector3.One;
+            sim.Command(new MoveTo(destination));
+
+            // Act.
+            time.Forward(AnyTimeSpan);
+
+            // Assert.
+            sim.Position.Should().Be(destination);
+        }
+
         [Theory]
         [InlineData(10)]
         [InlineData(20)]
@@ -112,16 +143,6 @@ namespace Domain.Tests.UnitTests
             new Toilet()
                 .AvailableActions().Select(x => x.GetType())
                 .Should().BeEquivalentTo(new[] { typeof(UseToilet) });
-        }
-
-        [Fact]
-        public void Sim_can_move_to_point()
-        {
-            Vector3 point = new(x: 1, y: 1, z: 1);
-
-            new Floor(point: point)
-                .AvailableActions()
-                .Should().BeEquivalentTo(new[] { new MoveTo(point) });
         }
     }
 }
