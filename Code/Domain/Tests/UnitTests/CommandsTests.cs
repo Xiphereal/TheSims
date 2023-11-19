@@ -62,6 +62,22 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
+        public void Performed_actions_are_notified()
+        {
+            Sim sim = Sim().Build();
+
+            var eventRaised = false;
+            sim.ActionPerformed += delegate (object? sender, EventArgs e)
+            {
+                eventRaised = true;
+            };
+
+            sim.Perform(new Sleep(new Bed()));
+
+            eventRaised.Should().BeTrue();
+        }
+
+        [Fact]
         public void Sim_can_be_commanded_to_move_to_point()
         {
             Vector3 point = new(x: 1, y: 1, z: 1);

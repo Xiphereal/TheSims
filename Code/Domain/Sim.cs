@@ -19,6 +19,8 @@ namespace Domain
 
         public Vector3 Position { get; set; }
 
+        public event System.EventHandler ActionPerformed;
+
         public Sim(Needs needs)
         {
             Needs = needs;
@@ -43,6 +45,8 @@ namespace Domain
         public void Perform(Action action)
         {
             action.Perform(performer: this);
+
+            ActionPerformed?.Invoke(this, System.EventArgs.Empty);
         }
 
         public void Eat(Food food)
