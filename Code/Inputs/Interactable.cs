@@ -11,7 +11,8 @@ namespace Godot
     {
         private void RemovePreviousOptions()
         {
-            FindUI().GetChildren().OfType<Button>().ToList().ForEach(x => x.QueueFree());
+            FindUI().GetChildren().OfType<Button>().ToList()
+                .ForEach(x => x.QueueFree());
         }
 
         private UI FindUI()
@@ -19,12 +20,21 @@ namespace Godot
             return GetNode<UI>("/root/Root/UI");
         }
 
-        public void OnAreaInputEvent(Node camera, InputEvent @event, Vector3 position, Vector3 normal, long shapeIdx)
+        public void OnAreaInputEvent(
+            Node camera,
+            InputEvent @event,
+            Vector3 position,
+            Vector3 normal,
+            long shapeIdx)
         {
             if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
             {
-                IEnumerable<Action> options = FindPlayer().InteractWith(GetInteractable());
-                FindUI().DistributeAroundMouse(options, imageForIcons: GetImageForAction());
+                IEnumerable<Action> options = FindPlayer()
+                    .InteractWith(GetInteractable());
+
+                FindUI().DistributeAroundMouse(
+                    options,
+                    imageForIcons: GetImageForAction());
             }
         }
 
