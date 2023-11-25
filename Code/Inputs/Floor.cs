@@ -1,7 +1,7 @@
 ﻿using Domain;
 using Godot;
 
-namespace Inputs.Code.Inputs
+namespace Inputs
 {
     public partial class Floor : Interactable
     {
