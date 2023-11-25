@@ -13,6 +13,8 @@ namespace Domain
             this.point = point;
         }
 
+        public Vector3 Position { get; }
+
         public IEnumerable<Action> AvailableActions() => new[] { new MoveTo(point) };
     }
 }

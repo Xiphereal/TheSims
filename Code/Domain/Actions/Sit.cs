@@ -4,9 +4,10 @@ namespace Domain.Actions
 {
     public class Sit : Action
     {
-        private Sofa on;
+        private readonly Sofa on;
 
         public Sit(Sofa on)
+            : base(on.Position)
         {
             this.on = on;
         }

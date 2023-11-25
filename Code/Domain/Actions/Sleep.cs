@@ -7,6 +7,7 @@ namespace Domain.Actions
         private Sleepable sleepable;
 
         public Sleep(Sleepable on)
+            : base(on.Position)
         {
             sleepable = on;
         }

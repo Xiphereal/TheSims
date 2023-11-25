@@ -8,6 +8,7 @@ namespace Domain
         private Vector3 destination;
 
         public MoveTo(Vector3 destination)
+            : base(destination)
         {
             this.destination = destination;
         }

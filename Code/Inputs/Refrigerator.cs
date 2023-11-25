@@ -1,4 +1,5 @@
 using Domain;
+using Inputs.Extensions;
 
 namespace Godot
 {
@@ -12,7 +13,9 @@ namespace Godot
 
         protected override IInteractable GetInteractable()
         {
-            return new Domain.Furniture.Refrigerator(hunger);
+            return new Domain.Furniture.Refrigerator(
+                hunger,
+                Position.ToNumericsVector());
         }
 
         protected override Texture2D GetImageForAction()

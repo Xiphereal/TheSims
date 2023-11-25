@@ -15,7 +15,7 @@ namespace Control.Tests.UnitTests
         public void Available_actions_for_interactable_can_be_queried()
         {
             Player sut = new();
-            Bed anyInteractable = new();
+            Bed anyInteractable = new(at: Vector3.Zero);
 
             IEnumerable<Action> result = sut.InteractWith(anyInteractable);
 
@@ -29,7 +29,7 @@ namespace Control.Tests.UnitTests
             Sim activeSim = Sim().WithEnergy(initialEnergy).Build();
             Player sut = new();
             sut.ActiveSim(activeSim);
-            Sleep sleep = new(new Bed());
+            Sleep sleep = new(new Bed(at: Vector3.Zero));
 
             sut.Command(sleep);
 
@@ -40,7 +40,9 @@ namespace Control.Tests.UnitTests
         [Fact]
         public void Sim_performs_queued_actions_due_to_pass_of_time()
         {
-            Sim activeSim = Sim().Build();
+            Sim activeSim = Sim()
+                .WithEnergy(0)
+                .Build();
             activeSim.Position = Vector3.Zero;
 
             Player sut = new();
@@ -49,12 +51,11 @@ namespace Control.Tests.UnitTests
             Lot lot = new(time);
             lot.EnteredBy(activeSim);
 
-            Vector3 destination = Vector3.One;
-            sut.Command(new MoveTo(destination));
+            sut.Command(new Sleep(new Bed(at: activeSim.Position)));
 
             time.Forward(System.TimeSpan.FromSeconds(1));
 
-            activeSim.Position.Should().Be(destination);
+            activeSim.Energy.Should().BeGreaterThan(0);
         }
     }
 }

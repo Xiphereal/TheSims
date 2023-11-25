@@ -2,6 +2,7 @@ using Domain.Actions;
 using Domain.Furniture;
 using FluentAssertions;
 using System;
+using System.Numerics;
 using Xunit;
 using static Domain.Tests.Builders.LotBuilder;
 using static Domain.Tests.Builders.SimBuilder;
@@ -42,7 +43,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().WithHygiene(80).Build();
 
-            sut.Perform(new TakeAShower(new Shower()));
+            sut.Perform(new TakeAShower(new Shower(at: Vector3.Zero)));
 
             sut.Hygiene.Should().Be(NeedMaxValue);
         }
@@ -52,7 +53,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().WithHygiene(80).Build();
 
-            sut.Perform(new TakeAShower(new Bath()));
+            sut.Perform(new TakeAShower(new Bath(at: Vector3.Zero)));
 
             sut.Hygiene.Should().Be(NeedMaxValue);
         }
@@ -62,7 +63,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().Build();
 
-            sut.Perform(new TakeAShower(new Shower()));
+            sut.Perform(new TakeAShower(new Shower(at: Vector3.Zero)));
 
             sut.Hygiene.Should().BeLessThanOrEqualTo(NeedMaxValue);
         }
@@ -72,7 +73,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().WithBladder(80).Build();
 
-            sut.Perform(new UseToilet(new Toilet()));
+            sut.Perform(new UseToilet(new Toilet(at: Vector3.Zero)));
 
             sut.Bladder.Should().Be(NeedMaxValue);
         }
@@ -82,7 +83,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().Build();
 
-            sut.Perform(new UseToilet(new Toilet()));
+            sut.Perform(new UseToilet(new Toilet(at: Vector3.Zero)));
 
             sut.Bladder.Should().BeLessThanOrEqualTo(NeedMaxValue);
         }
@@ -92,7 +93,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().WithEnergy(80).WithComfort(80).Build();
 
-            sut.Perform(new Sleep(on: new Bed()));
+            sut.Perform(new Sleep(on: new Bed(at: Vector3.Zero)));
 
             sut.Energy.Should().Be(NeedMaxValue);
             sut.Comfort.Should().Be(NeedMaxValue);
@@ -103,7 +104,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().WithEnergy(80).WithComfort(80).Build();
 
-            sut.Perform(new Sleep(on: new Sofa()));
+            sut.Perform(new Sleep(on: new Sofa(at: Vector3.Zero)));
 
             sut.Energy.Should().Be(NeedMaxValue);
             sut.Comfort.Should().Be(NeedMaxValue);
@@ -114,7 +115,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().Build();
 
-            sut.Perform(new Sleep(on: new Sofa()));
+            sut.Perform(new Sleep(on: new Sofa(at: Vector3.Zero)));
 
             sut.Energy.Should().BeLessThanOrEqualTo(NeedMaxValue);
         }
@@ -124,7 +125,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().WithComfort(80).Build();
 
-            sut.Perform(new Sit(on: new Sofa()));
+            sut.Perform(new Sit(on: new Sofa(at: Vector3.Zero)));
 
             sut.Comfort.Should().Be(NeedMaxValue);
         }
@@ -134,7 +135,7 @@ namespace Domain.Tests.UnitTests
         {
             Sim sut = Sim().Build();
 
-            sut.Perform(new Sit(on: new Sofa()));
+            sut.Perform(new Sit(on: new Sofa(at: Vector3.Zero)));
 
             sut.Comfort.Should().BeLessThanOrEqualTo(NeedMaxValue);
         }

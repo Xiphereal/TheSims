@@ -18,3 +18,4 @@
 # Refactors
 
 - Create a "gauge" for ints that are clamped between two values.
+- Make Sim.Perform(Action) private. Sim should encapsulate which action it must perform, taking into account the Action Queue.

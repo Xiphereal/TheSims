@@ -1,4 +1,5 @@
 using Domain;
+using Inputs.Extensions;
 
 namespace Godot
 {
@@ -9,7 +10,7 @@ namespace Godot
 
         protected override IInteractable GetInteractable()
         {
-            return new Domain.Furniture.Bed();
+            return new Domain.Furniture.Bed(at: Position.ToNumericsVector());
         }
 
         protected override Texture2D GetImageForAction()

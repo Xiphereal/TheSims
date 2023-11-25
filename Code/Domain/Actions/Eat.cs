@@ -7,6 +7,7 @@ namespace Domain.Actions
         private readonly Refrigerator refrigerator;
 
         public Eat(Refrigerator from)
+            : base(from.Position)
         {
             refrigerator = from;
         }

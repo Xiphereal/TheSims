@@ -8,6 +8,7 @@ namespace Domain.Actions
         private HygieneRestorer hygieneRestorer;
 
         public TakeAShower(HygieneRestorer hygieneRestorer)
+            : base(hygieneRestorer.Position)
         {
             this.hygieneRestorer = hygieneRestorer;
         }

@@ -50,8 +50,18 @@ namespace Domain
 
         public void PerformNextAction()
         {
-            if (actions.Any())
+            if (actions.Any() && NearToInteractable())
                 Perform(actions.Dequeue());
+        }
+
+        private bool NearToInteractable()
+        {
+            if (actions.Peek() is MoveTo)
+            {
+                return true;
+            }
+
+            return Position == actions.Peek().InteractablePosition;
         }
 
         public void Perform(Action action)

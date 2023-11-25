@@ -1,4 +1,6 @@
-﻿namespace Domain.Tests.Builders
+﻿using System.Numerics;
+
+namespace Domain.Tests.Builders
 {
     public class SimBuilder
     {
@@ -7,6 +9,8 @@
         private int bladder = 100;
         private int energy = 100;
         private int comfort = 100;
+
+        private Vector3 position;
 
         private SimBuilder()
         { }
@@ -57,9 +61,19 @@
             return this;
         }
 
+        public SimBuilder At(Vector3 position)
+        {
+            this.position = position;
+
+            return this;
+        }
+
         public Sim Build()
         {
-            return new Sim(new Needs(hunger, hygiene, bladder, energy, comfort));
+            return new Sim(new Needs(hunger, hygiene, bladder, energy, comfort))
+            {
+                Position = position
+            };
         }
     }
 }

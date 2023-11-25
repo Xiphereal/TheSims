@@ -26,7 +26,7 @@ namespace Domain.Tests.UnitTests
             lot.EnteredBy(sim);
 
             // Act.
-            sim.Command(new Sit(on: new Sofa()));
+            sim.Command(new Sit(on: new Sofa(at: Vector3.Zero)));
             sim.Comfort.Should().Be(50);
 
             time.Forward(AnyTimeSpan);
@@ -47,7 +47,7 @@ namespace Domain.Tests.UnitTests
 
             lot.EnteredBy(sim);
 
-            Sit action = new(on: new Sofa());
+            Sit action = new(on: new Sofa(at: Vector3.Zero));
             sim.Command(action);
             sim.Comfort.Should().Be(50);
 
@@ -71,7 +71,7 @@ namespace Domain.Tests.UnitTests
                 performedAction = action;
             };
 
-            Sleep action = new(new Bed());
+            Sleep action = new(new Bed(at: Vector3.Zero));
             sim.Perform(action);
 
             performedAction.Should().Be(action);
@@ -108,6 +108,23 @@ namespace Domain.Tests.UnitTests
             sim.Position.Should().Be(destination);
         }
 
+        [Fact]
+        public void Actions_can_not_be_performed_if_Sim_is_far_away()
+        {
+            Sim sim = Sim().At(Vector3.Zero).Build();
+
+            var invoked = false;
+            sim.ActionPerformed += delegate (Action performed)
+            {
+                invoked = true;
+            };
+
+            sim.Command(new UseToilet(new Toilet(at: Vector3.One * 999999)));
+            sim.PerformNextAction();
+
+            invoked.Should().BeFalse();
+        }
+
         [Theory]
         [InlineData(10)]
         [InlineData(20)]
@@ -116,7 +133,11 @@ namespace Domain.Tests.UnitTests
             const int initialHunger = 80;
             Sim sim = Builders.SimBuilder.Sim().WithHunger(initialHunger).Build();
 
-            new Eat(from: new Refrigerator(hunger: refrigeratorHunger)).Perform(sim);
+            new Eat(
+                    from: new Refrigerator(
+                        hunger: refrigeratorHunger,
+                        at: Vector3.Zero))
+                .Perform(sim);
 
             sim.Hunger.Should().Be(initialHunger + refrigeratorHunger);
         }
@@ -124,7 +145,7 @@ namespace Domain.Tests.UnitTests
         [Fact]
         public void Beds_can_be_used_to_lie_down_and_sleep()
         {
-            new Bed()
+            new Bed(at: Vector3.Zero)
                 .AvailableActions().Select(x => x.GetType())
                 .Should().BeEquivalentTo(new[] { typeof(Lay), typeof(Sleep) });
         }
@@ -132,7 +153,7 @@ namespace Domain.Tests.UnitTests
         [Fact]
         public void Sofa_can_be_used_to_sit_lie_down_and_sleep()
         {
-            new Sofa()
+            new Sofa(at: Vector3.Zero)
                 .AvailableActions().Select(x => x.GetType())
                 .Should().BeEquivalentTo(new[] { typeof(Sit), typeof(Lay), typeof(Sleep) });
         }
@@ -140,7 +161,7 @@ namespace Domain.Tests.UnitTests
         [Fact]
         public void Showers_can_be_used_to_take_a_shower()
         {
-            new Shower()
+            new Shower(at: Vector3.Zero)
                 .AvailableActions().Select(x => x.GetType())
                 .Should().BeEquivalentTo(new[] { typeof(TakeAShower) });
         }
@@ -148,7 +169,7 @@ namespace Domain.Tests.UnitTests
         [Fact]
         public void Baths_can_be_used_to_take_a_bath()
         {
-            new Bath()
+            new Bath(at: Vector3.Zero)
                 .AvailableActions().Select(x => x.GetType())
                 .Should().BeEquivalentTo(new[] { typeof(TakeAShower) });
         }
@@ -156,7 +177,7 @@ namespace Domain.Tests.UnitTests
         [Fact]
         public void Toilets_can_be_used_to_relieve_bladder()
         {
-            new Toilet()
+            new Toilet(at: Vector3.Zero)
                 .AvailableActions().Select(x => x.GetType())
                 .Should().BeEquivalentTo(new[] { typeof(UseToilet) });
         }

@@ -4,9 +4,11 @@ namespace Domain.Actions
 {
     public class UseToilet : Action
     {
-        private IBladderRestorer bladderRestorer;
+        private readonly IBladderRestorer bladderRestorer;
 
-        public UseToilet(IBladderRestorer bladderRestorer)
+        public UseToilet(
+            IBladderRestorer bladderRestorer)
+            : base(bladderRestorer.Position)
         {
             this.bladderRestorer = bladderRestorer;
         }
