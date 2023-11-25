@@ -1,9 +1,9 @@
 # Features
 
-- Add the rest of Needs.
 - Add different rates of increment of Needs depending of the specific Need.
-- Add the rest of Actions.
 - Different Furnitures affect different to the Needs based on their stats.
+- Add the rest of Needs.
+- Add the rest of Actions.
 - Make laying to restore Comfort.
 - Adequate Needs increment values of Furnitures to the real ones:
     - Ranges from 1 to 10.
