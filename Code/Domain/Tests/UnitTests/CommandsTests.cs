@@ -109,20 +109,15 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
-        public void Actions_can_not_be_performed_if_Sim_is_far_away()
+        public void Sim_teleports_to_interactable_when_far_away()
         {
             Sim sim = Sim().At(Vector3.Zero).Build();
 
-            var invoked = false;
-            sim.ActionPerformed += delegate (Action performed)
-            {
-                invoked = true;
-            };
-
-            sim.Command(new UseToilet(new Toilet(at: Vector3.One * 999999)));
+            Toilet toilet = new(at: Vector3.One * 999999);
+            sim.Command(new UseToilet(toilet));
             sim.PerformNextAction();
 
-            invoked.Should().BeFalse();
+            sim.Position.Should().Be(toilet.Position);
         }
 
         [Theory]

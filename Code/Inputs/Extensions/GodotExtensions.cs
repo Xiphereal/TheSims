@@ -9,5 +9,10 @@ namespace Inputs.Extensions
         {
             return new Vector3(godot.X, godot.Y, godot.Z);
         }
+
+        public static GodotVector3 ToGodotVector(this Vector3 vector)
+        {
+            return new GodotVector3(vector.X, vector.Y, vector.Z);
+        }
     }
 }

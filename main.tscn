@@ -50,6 +50,7 @@ mesh = SubResource("PlaneMesh_wkecx")
 transform = Transform3D(0.721615, -0.536047, 0.438093, -7.45058e-09, 0.632813, 0.774304, -0.692294, -0.55875, 0.456648, 1.66684, 3.17442, 1.55481)
 
 [node name="Bed" parent="." instance=ExtResource("1_q408g")]
+transform = Transform3D(1, 0, 0, 0, 0.19961, 0, 0, 0, 1.53923, 1.36865, 0.238504, -0.948181)
 
 [node name="Refrigerator" parent="." instance=ExtResource("2_0wiyi")]
 transform = Transform3D(-0.410189, 0, 0.43855, 0, 1.41175, 0, -0.672631, 0, -0.26744, -2.03191, 0.68703, 1.23067)

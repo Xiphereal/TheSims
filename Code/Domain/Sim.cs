@@ -40,8 +40,12 @@ namespace Domain
 
         public void PerformNextAction()
         {
-            if (actions.Any() && NearToInteractable())
+            if (actions.Any())
+            {
+                if (!NearToInteractable())
+                    Position = actions.Peek().InteractablePosition;
                 Perform(actions.Dequeue());
+            }
         }
 
         private bool NearToInteractable()
