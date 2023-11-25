@@ -22,7 +22,7 @@ namespace Inputs
         {
             FindUI().GetChild<BoxContainer>(idx: 0)
                 .GetChildren().OfType<Button>()
-                .First(x => x.Name == performed.Name)
+                .First(x => x.Name.ToString().StartsWith(performed.Name))
                 .QueueFree();
         }
 

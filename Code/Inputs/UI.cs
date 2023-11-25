@@ -57,7 +57,14 @@ namespace Godot
         {
             Button button = new()
             {
-                Name = action.Name,
+                // Godot invariant: nodes name must be unique.
+                //
+                // The removal of the performed action buttons relies on them
+                // being linked to their actions by name.
+                //
+                // If a node is added to the scene with an already existing
+                // name, the engine will override its name with a random one.
+                Name = Unique(action.Name),
                 Icon = imageForIcons,
                 ExpandIcon = true,
                 Flat = true,
@@ -72,6 +79,11 @@ namespace Godot
             GetNode<Control>("./ActionsQueue").AddChild(button);
 
             FindPlayer().Command(action);
+
+            static string Unique(string name)
+            {
+                return name + System.Guid.NewGuid();
+            }
         }
 
         private Player FindPlayer()
