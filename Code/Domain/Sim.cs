@@ -6,17 +6,7 @@ using System.Numerics;
 
 namespace Domain
 {
-    public delegate void Adsfkjadlsfj(Action performed);
-
-    public class ActionPerformed : System.EventArgs
-    {
-        public ActionPerformed(Action performed)
-        {
-            Which = performed;
-        }
-
-        public Action Which { get; }
-    }
+    public delegate void ActionPerformed(Action performed);
 
     public class Sim
     {
@@ -31,7 +21,7 @@ namespace Domain
 
         public Vector3 Position { get; set; }
 
-        public event Adsfkjadlsfj ActionPerformed;
+        public event ActionPerformed ActionPerformed;
 
         public Sim(Needs needs)
         {
