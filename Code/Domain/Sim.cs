@@ -6,6 +6,18 @@ using System.Numerics;
 
 namespace Domain
 {
+    public delegate void Adsfkjadlsfj(Action performed);
+
+    public class ActionPerformed : System.EventArgs
+    {
+        public ActionPerformed(Action performed)
+        {
+            Which = performed;
+        }
+
+        public Action Which { get; }
+    }
+
     public class Sim
     {
         private Queue<Action> actions = new();
@@ -19,7 +31,7 @@ namespace Domain
 
         public Vector3 Position { get; set; }
 
-        public event System.EventHandler ActionPerformed;
+        public event Adsfkjadlsfj ActionPerformed;
 
         public Sim(Needs needs)
         {
@@ -46,7 +58,7 @@ namespace Domain
         {
             action.Perform(performer: this);
 
-            ActionPerformed?.Invoke(this, System.EventArgs.Empty);
+            ActionPerformed?.Invoke(performed: action);
         }
 
         public void Eat(Food food)

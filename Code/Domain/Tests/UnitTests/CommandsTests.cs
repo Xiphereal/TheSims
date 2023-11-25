@@ -1,7 +1,6 @@
 ﻿using Domain.Actions;
 using Domain.Furniture;
 using FluentAssertions;
-using System;
 using System.Linq;
 using System.Numerics;
 using Xunit;
@@ -12,7 +11,7 @@ namespace Domain.Tests.UnitTests
 {
     public class CommandsTests
     {
-        private static readonly TimeSpan AnyTimeSpan = TimeSpan.FromHours(1);
+        private static readonly System.TimeSpan AnyTimeSpan = System.TimeSpan.FromHours(1);
 
         [Fact]
         public void Actions_can_be_commanded()
@@ -66,15 +65,16 @@ namespace Domain.Tests.UnitTests
         {
             Sim sim = Sim().Build();
 
-            var eventRaised = false;
-            sim.ActionPerformed += delegate (object? sender, EventArgs e)
+            Action performedAction = null;
+            sim.ActionPerformed += delegate (Action action)
             {
-                eventRaised = true;
+                performedAction = action;
             };
 
-            sim.Perform(new Sleep(new Bed()));
+            Sleep action = new(new Bed());
+            sim.Perform(action);
 
-            eventRaised.Should().BeTrue();
+            performedAction.Should().Be(action);
         }
 
         [Fact]
