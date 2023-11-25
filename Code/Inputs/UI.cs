@@ -18,10 +18,14 @@ namespace Godot
             GetChildren().OfType<Button>().ToList().ForEach(x => x.QueueFree());
         }
 
-        public void DistributeAroundMouse(IEnumerable<Action> options, Texture2D imageForIcons)
+        public void DistributeAroundMouse(
+            IEnumerable<Action> options,
+            Texture2D imageForIcons)
         {
             for (int i = 0; i < options.Count(); i++)
-                CreateActionButton(@for: options.ElementAt(i), at: CalculatePosition(options, i));
+                CreateActionButton(
+                    @for: options.ElementAt(i),
+                    at: CalculatePosition(options, i));
 
             Vector2 CalculatePosition(IEnumerable<Action> options, int i)
             {
@@ -53,6 +57,7 @@ namespace Godot
         {
             Button button = new()
             {
+                Name = action.Name,
                 Icon = imageForIcons,
                 ExpandIcon = true,
                 Flat = true,

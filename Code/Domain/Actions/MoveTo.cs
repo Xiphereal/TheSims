@@ -12,7 +12,7 @@ namespace Domain
             this.destination = destination;
         }
 
-        protected override string Name => "Move here";
+        public override string Name => "Move here";
 
         public override void Perform(Sim performer)
         {

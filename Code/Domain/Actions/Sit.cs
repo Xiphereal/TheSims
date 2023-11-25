@@ -11,7 +11,7 @@ namespace Domain.Actions
             this.on = on;
         }
 
-        protected override string Name => nameof(Sit);
+        public override string Name => nameof(Sit);
 
         public override void Perform(Sim performer)
         {

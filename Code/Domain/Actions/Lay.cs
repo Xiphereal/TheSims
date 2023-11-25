@@ -2,7 +2,7 @@
 {
     public class Lay : Action
     {
-        protected override string Name => nameof(Lay);
+        public override string Name => nameof(Lay);
 
         public override void Perform(Sim performer)
         {

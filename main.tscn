@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=14 format=3 uid="uid://deypjsupvra4r"]
 
+[ext_resource type="Script" path="res://Code/Inputs/Lot.cs" id="1_fvg03"]
 [ext_resource type="PackedScene" uid="uid://thh26uferhtv" path="res://Scenes/bed.tscn" id="1_q408g"]
 [ext_resource type="Script" path="res://Code/Inputs/Floor.cs" id="1_uv3ld"]
 [ext_resource type="PackedScene" uid="uid://bj08b2mxksoof" path="res://Scenes/refrigerator.tscn" id="2_0wiyi"]
@@ -22,6 +23,11 @@ size = Vector2(20, 20)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ali21"]
 
 [node name="Root" type="Node3D"]
+script = ExtResource("1_fvg03")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.554844, 0.557764, -0.61729, 0, 0.741976, 0.670427, 0.831954, -0.371982, 0.411681, 0, 0, 0)
@@ -76,4 +82,5 @@ layout_mode = 1
 offset_right = 564.0
 offset_bottom = 69.0
 
+[connection signal="timeout" from="Timer" to="." method="OnTimeTimeout"]
 [connection signal="input_event" from="Floor/Area3D" to="Floor" method="OnAreaInputEvent"]

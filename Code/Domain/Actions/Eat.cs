@@ -11,7 +11,7 @@ namespace Domain.Actions
             refrigerator = from;
         }
 
-        protected override string Name => nameof(Eat);
+        public override string Name => nameof(Eat);
 
         public override void Perform(Sim performer)
         {

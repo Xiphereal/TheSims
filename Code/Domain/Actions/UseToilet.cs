@@ -11,7 +11,7 @@ namespace Domain.Actions
             this.bladderRestorer = bladderRestorer;
         }
 
-        protected override string Name => nameof(UseToilet);
+        public override string Name => nameof(UseToilet);
 
         public override void Perform(Sim performer)
         {

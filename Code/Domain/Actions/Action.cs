@@ -2,7 +2,7 @@
 {
     public abstract class Action
     {
-        protected abstract string Name { get; }
+        public abstract string Name { get; }
 
         public abstract void Perform(Sim performer);
 
