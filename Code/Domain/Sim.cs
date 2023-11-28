@@ -11,6 +11,7 @@ namespace Domain
     public class Sim
     {
         private Queue<Action> actions = new();
+        private System.TimeSpan currentActionElapsedTime;
 
         public int Hunger => Needs.Hunger;
         public int Hygiene => Needs.Hygiene;
@@ -94,6 +95,17 @@ namespace Domain
         public void RestoreComfort()
         {
             Needs.Comfort = 100;
+        }
+
+        public void ContinueWithActionAtHand(int times = 1)
+        {
+            currentActionElapsedTime += new System.TimeSpan(
+                hours: 0,
+                minutes: 0,
+                seconds: times);
+
+            if (actions.Peek().Duration <= currentActionElapsedTime)
+                PerformNextAction();
         }
     }
 }

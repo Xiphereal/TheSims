@@ -53,7 +53,7 @@ namespace Control.Tests.UnitTests
 
             sut.Command(new Sleep(new Bed(at: activeSim.Position)));
 
-            time.Forward(System.TimeSpan.FromSeconds(1));
+            time.Forward();
 
             activeSim.Energy.Should().BeGreaterThan(0);
         }

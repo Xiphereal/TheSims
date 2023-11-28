@@ -1,6 +1,7 @@
 ﻿using Domain.Actions;
 using Domain.Furniture;
 using FluentAssertions;
+using FluentAssertions.Extensions;
 using System.Linq;
 using System.Numerics;
 using Xunit;
@@ -11,7 +12,7 @@ namespace Domain.Tests.UnitTests
 {
     public class CommandsTests
     {
-        private static readonly System.TimeSpan AnyTimeSpan = System.TimeSpan.FromHours(1);
+        private const int MinimumNeedValue = 0;
 
         [Fact]
         public void Actions_can_be_commanded()
@@ -29,7 +30,7 @@ namespace Domain.Tests.UnitTests
             sim.Command(new Sit(on: new Sofa(at: Vector3.Zero)));
             sim.Comfort.Should().Be(50);
 
-            time.Forward(AnyTimeSpan);
+            time.Forward();
 
             // Assert.
             sim.Comfort.Should().BeGreaterThan(initialComfort);
@@ -54,7 +55,7 @@ namespace Domain.Tests.UnitTests
             // Act.
             sim.Cancel(action);
 
-            time.Forward(AnyTimeSpan);
+            time.Forward();
 
             // Assert.
             sim.Comfort.Should().BeCloseTo(initialComfort, delta: 5);
@@ -102,7 +103,7 @@ namespace Domain.Tests.UnitTests
             sim.Command(new MoveTo(destination));
 
             // Act.
-            time.Forward(AnyTimeSpan);
+            time.Forward();
 
             // Assert.
             sim.Position.Should().Be(destination);
@@ -118,6 +119,39 @@ namespace Domain.Tests.UnitTests
             sim.PerformNextAction();
 
             sim.Position.Should().Be(toilet.Position);
+        }
+
+        [Fact]
+        public void Actions_take_a_while_to_complete()
+        {
+            Sim sim = SimWithAllNeedsToMinimum().Build();
+
+            Action action = new Sit(on: new Sofa(at: sim.Position));
+            sim.Command(action);
+
+            action.Duration = 10.Seconds();
+            sim.ContinueWithActionAtHand(times: 5);
+            sim.Comfort.Should().Be(MinimumNeedValue);
+
+            sim.ContinueWithActionAtHand(times: 5);
+            sim.Comfort.Should().BeGreaterThan(MinimumNeedValue);
+        }
+
+        [Fact]
+        public void Actions_take_a_while_to_complete2()
+        {
+            Time time = new();
+            Lot lot = Lot().With(time).Build();
+            Sim sim = SimWithAllNeedsToMinimum().At(Vector3.Zero).Build();
+            lot.EnteredBy(sim);
+
+            Action action = new Sit(on: new Sofa(at: sim.Position));
+            sim.Command(action);
+
+            action.Duration = 10.Seconds();
+            time.Forward();
+
+            sim.Comfort.Should().Be(0);
         }
 
         [Theory]

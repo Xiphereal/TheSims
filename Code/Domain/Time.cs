@@ -6,7 +6,7 @@ namespace Domain
     {
         public event EventHandler TimePassed;
 
-        public void Forward(TimeSpan timeSpan)
+        public void Forward()
         {
             TimePassed(this, EventArgs.Empty);
         }

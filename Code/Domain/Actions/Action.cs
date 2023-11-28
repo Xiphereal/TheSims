@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 
 namespace Domain.Actions
 {
@@ -12,6 +13,7 @@ namespace Domain.Actions
         public abstract string Name { get; }
 
         public Vector3 InteractablePosition { get; }
+        public TimeSpan Duration { get; set; }
 
         public abstract void Perform(Sim performer);
 

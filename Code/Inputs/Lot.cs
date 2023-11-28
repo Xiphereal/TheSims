@@ -38,7 +38,7 @@ namespace Inputs
 
         public void OnTimeTimeout()
         {
-            time.Forward(System.TimeSpan.FromSeconds(1));
+            time.Forward();
         }
     }
 }

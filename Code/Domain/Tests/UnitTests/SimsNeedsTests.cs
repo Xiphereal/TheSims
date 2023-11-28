@@ -148,7 +148,7 @@ namespace Domain.Tests.UnitTests
             Sim sim = Sim().Build();
             lot.EnteredBy(sim);
 
-            time.Forward(AnyTimeSpan);
+            time.Forward();
 
             sim.Hunger.Should().BeLessThan(NeedMaxValue);
             sim.Hygiene.Should().BeLessThan(NeedMaxValue);
@@ -165,7 +165,7 @@ namespace Domain.Tests.UnitTests
             Sim sim = Sim().Build();
             lot.EnteredBy(sim);
 
-            time.Forward(AnyTimeSpan);
+            time.Forward();
 
             sim.Hunger.Should().BeLessThan(NeedMaxValue);
             sim.Hygiene.Should().BeLessThan(NeedMaxValue);
@@ -179,7 +179,7 @@ namespace Domain.Tests.UnitTests
             var previousEnergy = sim.Energy;
             var previousComfort = sim.Comfort;
 
-            time.Forward(AnyTimeSpan);
+            time.Forward();
 
             sim.Hunger.Should().BeLessThan(previousHunger);
             sim.Hygiene.Should().BeLessThan(previousHygiene);
@@ -196,7 +196,7 @@ namespace Domain.Tests.UnitTests
             Sim sim = SimWithAllNeedsToMinimum().Build();
             lot.EnteredBy(sim);
 
-            time.Forward(AnyTimeSpan);
+            time.Forward();
 
             sim.Hunger.Should().BeGreaterThanOrEqualTo(NeedMinValue);
             sim.Hygiene.Should().BeGreaterThanOrEqualTo(NeedMinValue);
