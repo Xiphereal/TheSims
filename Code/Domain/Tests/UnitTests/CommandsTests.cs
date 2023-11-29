@@ -129,16 +129,49 @@ namespace Domain.Tests.UnitTests
             Sim sim = SimWithAllNeedsToMinimum().At(Vector3.Zero).Build();
             lot.EnteredBy(sim);
 
-            Action action = new Sit(on: new Sofa(at: sim.Position));
+            Action action = new Sit(on: new Sofa(at: sim.Position))
+            {
+                Duration = 10.Seconds()
+            };
             sim.Command(action);
-
-            action.Duration = 10.Seconds();
 
             time.Forward(howMuch: 1);
             sim.Comfort.Should().Be(MinimumNeedValue);
 
             time.Forward(howMuch: action.Duration.Seconds - 1);
             sim.Comfort.Should().BeGreaterThan(MinimumNeedValue);
+        }
+
+        [Fact]
+        public void Actions_are_performed_secuencially_rather_than_in_parallel()
+        {
+            Time time = new();
+            Lot lot = Lot().With(time).Build();
+            Sim sim = SimWithAllNeedsToMinimum().At(Vector3.Zero).Build();
+            lot.EnteredBy(sim);
+
+            Action longerAction = new Sit(on: new Sofa(at: sim.Position))
+            {
+                Duration = 5.Seconds()
+            };
+            sim.Command(longerAction);
+
+            Action shorterAction = new UseToilet(new Toilet(at: sim.Position))
+            {
+                Duration = longerAction.Duration / 2
+            };
+            sim.Command(shorterAction);
+
+            time.Forward(howMuch: 1);
+            sim.Comfort.Should().Be(MinimumNeedValue);
+            sim.Bladder.Should().Be(MinimumNeedValue);
+
+            time.Forward(howMuch: longerAction.Duration.Seconds);
+            sim.Comfort.Should().BeGreaterThan(MinimumNeedValue);
+            sim.Bladder.Should().Be(MinimumNeedValue);
+
+            time.Forward(howMuch: shorterAction.Duration.Seconds);
+            sim.Bladder.Should().BeGreaterThan(MinimumNeedValue);
         }
 
         [Theory]

@@ -100,7 +100,10 @@ namespace Domain
                 seconds: times);
 
             if (actions.Peek().Duration <= currentActionElapsedTime)
+            {
                 PerformNextAction();
+                currentActionElapsedTime = System.TimeSpan.Zero;
+            }
         }
 
         private void PerformNextAction()
