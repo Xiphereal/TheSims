@@ -87,7 +87,7 @@ namespace Domain
             Needs.Comfort = 100;
         }
 
-        public void ContinuePerformingActionAtHand(int times = 1)
+        public void ContinuePerformingActionAtHand(int during = 1)
         {
             if (!actions.Any())
             {
@@ -97,7 +97,7 @@ namespace Domain
             currentActionElapsedTime += new System.TimeSpan(
                 hours: 0,
                 minutes: 0,
-                seconds: times);
+                seconds: during);
 
             if (actions.Peek().Duration <= currentActionElapsedTime)
             {

@@ -14,6 +14,8 @@ namespace Domain.Actions
 
         public override string Name => nameof(Sleep);
 
+        public override System.TimeSpan Duration => System.TimeSpan.FromSeconds(20);
+
         public override void Perform(Sim performer)
         {
             performer.Sleep();

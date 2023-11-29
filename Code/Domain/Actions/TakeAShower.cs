@@ -15,6 +15,8 @@ namespace Domain.Actions
 
         public override string Name => nameof(TakeAShower);
 
+        public override System.TimeSpan Duration => System.TimeSpan.FromSeconds(15);
+
         public override void Perform(Sim performer)
         {
             performer.RestoreHygiene();

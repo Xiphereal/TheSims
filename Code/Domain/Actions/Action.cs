@@ -13,7 +13,7 @@ namespace Domain.Actions
         public abstract string Name { get; }
 
         public Vector3 InteractablePosition { get; }
-        public TimeSpan Duration { get; set; }
+        public abstract TimeSpan Duration { get; }
 
         public abstract void Perform(Sim performer);
 

@@ -1,7 +1,6 @@
 ﻿using Domain.Actions;
 using Domain.Furniture;
 using FluentAssertions;
-using FluentAssertions.Extensions;
 using System.Linq;
 using System.Numerics;
 using Xunit;
@@ -27,10 +26,11 @@ namespace Domain.Tests.UnitTests
             lot.EnteredBy(sim);
 
             // Act.
-            sim.Command(new Sit(on: new Sofa(at: Vector3.Zero)));
+            Sit action = new(on: new Sofa(at: Vector3.Zero));
+            sim.Command(action);
             sim.Comfort.Should().Be(50);
 
-            time.Forward();
+            time.Forward(howMuch: action.Duration.Seconds);
 
             // Assert.
             sim.Comfort.Should().BeGreaterThan(initialComfort);
@@ -114,11 +114,12 @@ namespace Domain.Tests.UnitTests
         {
             Sim sim = Sim().At(Vector3.Zero).Build();
 
-            Toilet toilet = new(at: Vector3.One * 999999);
-            sim.Command(new UseToilet(toilet));
-            sim.ContinuePerformingActionAtHand();
+            Toilet interactable = new(at: Vector3.One * 999999);
+            UseToilet action = new(interactable);
+            sim.Command(action);
+            sim.ContinuePerformingActionAtHand(during: action.Duration.Seconds);
 
-            sim.Position.Should().Be(toilet.Position);
+            sim.Position.Should().Be(interactable.Position);
         }
 
         [Fact]
@@ -129,10 +130,7 @@ namespace Domain.Tests.UnitTests
             Sim sim = SimWithAllNeedsToMinimum().At(Vector3.Zero).Build();
             lot.EnteredBy(sim);
 
-            Action action = new Sit(on: new Sofa(at: sim.Position))
-            {
-                Duration = 10.Seconds()
-            };
+            Action action = new Sit(on: new Sofa(at: sim.Position));
             sim.Command(action);
 
             time.Forward(howMuch: 1);
@@ -150,16 +148,11 @@ namespace Domain.Tests.UnitTests
             Sim sim = SimWithAllNeedsToMinimum().At(Vector3.Zero).Build();
             lot.EnteredBy(sim);
 
-            Action longerAction = new Sit(on: new Sofa(at: sim.Position))
-            {
-                Duration = 5.Seconds()
-            };
-            sim.Command(longerAction);
+            Action longerAction = new Sit(on: new Sofa(at: sim.Position));
+            Action shorterAction = new UseToilet(new Toilet(at: sim.Position));
+            longerAction.Duration.Should().BeGreaterThan(shorterAction.Duration);
 
-            Action shorterAction = new UseToilet(new Toilet(at: sim.Position))
-            {
-                Duration = longerAction.Duration / 2
-            };
+            sim.Command(longerAction);
             sim.Command(shorterAction);
 
             time.Forward(howMuch: 1);

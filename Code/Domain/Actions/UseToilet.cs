@@ -15,6 +15,8 @@ namespace Domain.Actions
 
         public override string Name => nameof(UseToilet);
 
+        public override System.TimeSpan Duration => System.TimeSpan.FromSeconds(4);
+
         public override void Perform(Sim performer)
         {
             performer.RestoreBladder();

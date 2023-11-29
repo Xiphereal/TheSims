@@ -29,11 +29,11 @@ namespace Control.Tests.UnitTests
             Sim activeSim = Sim().WithEnergy(initialEnergy).Build();
             Player sut = new();
             sut.ActiveSim(activeSim);
-            Sleep sleep = new(new Bed(at: Vector3.Zero));
+            Sleep action = new(new Bed(at: Vector3.Zero));
 
-            sut.Command(sleep);
+            sut.Command(action);
 
-            activeSim.ContinuePerformingActionAtHand();
+            activeSim.ContinuePerformingActionAtHand(during: action.Duration.Seconds);
             activeSim.Energy.Should().BeGreaterThan(initialEnergy);
         }
 
@@ -51,9 +51,10 @@ namespace Control.Tests.UnitTests
             Lot lot = new(time);
             lot.EnteredBy(activeSim);
 
-            sut.Command(new Sleep(new Bed(at: activeSim.Position)));
+            Sleep action = new Sleep(new Bed(at: activeSim.Position));
+            sut.Command(action);
 
-            time.Forward();
+            time.Forward(howMuch: action.Duration.Seconds);
 
             activeSim.Energy.Should().BeGreaterThan(0);
         }

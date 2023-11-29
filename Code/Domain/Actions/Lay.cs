@@ -11,6 +11,8 @@ namespace Domain.Actions
 
         public override string Name => nameof(Lay);
 
+        public override System.TimeSpan Duration => System.TimeSpan.FromSeconds(10);
+
         public override void Perform(Sim performer)
         {
             performer.Sleep();

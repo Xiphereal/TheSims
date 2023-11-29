@@ -14,6 +14,8 @@ namespace Domain.Actions
 
         public override string Name => nameof(Sit);
 
+        public override System.TimeSpan Duration => System.TimeSpan.FromSeconds(10);
+
         public override void Perform(Sim performer)
         {
             performer.RestoreComfort();

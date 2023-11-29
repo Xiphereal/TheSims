@@ -14,6 +14,8 @@ namespace Domain.Actions
 
         public override string Name => nameof(Eat);
 
+        public override System.TimeSpan Duration => System.TimeSpan.FromSeconds(4);
+
         public override void Perform(Sim performer)
         {
             performer.Eat(refrigerator.Food);
