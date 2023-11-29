@@ -26,7 +26,6 @@ size = Vector2(20, 20)
 script = ExtResource("1_fvg03")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
 autostart = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
