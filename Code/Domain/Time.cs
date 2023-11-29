@@ -6,9 +6,10 @@ namespace Domain
     {
         public event EventHandler TimePassed;
 
-        public void Forward()
+        public void Forward(int howMuch = 1)
         {
-            TimePassed(this, EventArgs.Empty);
+            for (int i = 0; i < howMuch; i++)
+                TimePassed(this, EventArgs.Empty);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Domain
         {
             time.TimePassed += (_, _) =>
             {
-                sim.PerformNextAction();
+                sim.ContinuePerformingActionAtHand();
                 sim.IncreaseNeeds();
             };
 

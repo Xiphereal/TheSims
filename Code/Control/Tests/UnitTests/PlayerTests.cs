@@ -33,7 +33,7 @@ namespace Control.Tests.UnitTests
 
             sut.Command(sleep);
 
-            activeSim.PerformNextAction();
+            activeSim.ContinuePerformingActionAtHand();
             activeSim.Energy.Should().BeGreaterThan(initialEnergy);
         }
 

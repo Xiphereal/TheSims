@@ -116,29 +116,13 @@ namespace Domain.Tests.UnitTests
 
             Toilet toilet = new(at: Vector3.One * 999999);
             sim.Command(new UseToilet(toilet));
-            sim.PerformNextAction();
+            sim.ContinuePerformingActionAtHand();
 
             sim.Position.Should().Be(toilet.Position);
         }
 
         [Fact]
         public void Actions_take_a_while_to_complete()
-        {
-            Sim sim = SimWithAllNeedsToMinimum().Build();
-
-            Action action = new Sit(on: new Sofa(at: sim.Position));
-            sim.Command(action);
-
-            action.Duration = 10.Seconds();
-            sim.ContinueWithActionAtHand(times: 5);
-            sim.Comfort.Should().Be(MinimumNeedValue);
-
-            sim.ContinueWithActionAtHand(times: 5);
-            sim.Comfort.Should().BeGreaterThan(MinimumNeedValue);
-        }
-
-        [Fact]
-        public void Actions_take_a_while_to_complete2()
         {
             Time time = new();
             Lot lot = Lot().With(time).Build();
@@ -149,9 +133,12 @@ namespace Domain.Tests.UnitTests
             sim.Command(action);
 
             action.Duration = 10.Seconds();
-            time.Forward();
 
-            sim.Comfort.Should().Be(0);
+            time.Forward(howMuch: 1);
+            sim.Comfort.Should().Be(MinimumNeedValue);
+
+            time.Forward(howMuch: 10);
+            sim.Comfort.Should().BeGreaterThan(MinimumNeedValue);
         }
 
         [Theory]

@@ -39,16 +39,6 @@ namespace Domain
             actions = actions.Without(action);
         }
 
-        public void PerformNextAction()
-        {
-            if (actions.Any())
-            {
-                if (!NearToInteractable())
-                    Position = actions.Peek().InteractablePosition;
-                Perform(actions.Dequeue());
-            }
-        }
-
         private bool NearToInteractable()
         {
             if (actions.Peek() is MoveTo)
@@ -97,8 +87,13 @@ namespace Domain
             Needs.Comfort = 100;
         }
 
-        public void ContinueWithActionAtHand(int times = 1)
+        public void ContinuePerformingActionAtHand(int times = 1)
         {
+            if (!actions.Any())
+            {
+                return;
+            }
+
             currentActionElapsedTime += new System.TimeSpan(
                 hours: 0,
                 minutes: 0,
@@ -106,6 +101,13 @@ namespace Domain
 
             if (actions.Peek().Duration <= currentActionElapsedTime)
                 PerformNextAction();
+        }
+
+        private void PerformNextAction()
+        {
+            if (!NearToInteractable())
+                Position = actions.Peek().InteractablePosition;
+            Perform(actions.Dequeue());
         }
     }
 }
