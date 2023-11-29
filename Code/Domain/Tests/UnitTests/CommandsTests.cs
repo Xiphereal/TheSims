@@ -137,7 +137,7 @@ namespace Domain.Tests.UnitTests
             time.Forward(howMuch: 1);
             sim.Comfort.Should().Be(MinimumNeedValue);
 
-            time.Forward(howMuch: 10);
+            time.Forward(howMuch: action.Duration.Seconds - 1);
             sim.Comfort.Should().BeGreaterThan(MinimumNeedValue);
         }
 
