@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://l0j5t44euyhw"]
+
+[ext_resource type="FontFile" uid="uid://bpfhty6vopo6s" path="res://Resources/COMIC.TTF" id="1_bf60q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2012"]
+bg_color = Color(0, 0, 0.321569, 1)
+border_width_top = 3
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[resource]
+default_font = ExtResource("1_bf60q")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_o2012")

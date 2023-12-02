@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=15 format=3 uid="uid://deypjsupvra4r"]
 
 [ext_resource type="Script" path="res://Code/Inputs/Lot.cs" id="1_fvg03"]
 [ext_resource type="PackedScene" uid="uid://thh26uferhtv" path="res://Scenes/bed.tscn" id="1_q408g"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Code/Inputs/SimInput.cs" id="4_vrrh7"]
 [ext_resource type="Script" path="res://Code/Inputs/PlayerInput.cs" id="5_txm3g"]
 [ext_resource type="Script" path="res://Code/Inputs/UI.cs" id="6_2m6bx"]
+[ext_resource type="Theme" uid="uid://l0j5t44euyhw" path="res://Resources/new_theme.tres" id="9_0mhxy"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6x0y"]
 
@@ -81,6 +82,37 @@ script = ExtResource("6_2m6bx")
 layout_mode = 1
 offset_right = 564.0
 offset_bottom = 69.0
+
+[node name="Needs" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 772.0
+offset_top = -175.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("9_0mhxy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Needs"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Needs/VBoxContainer"]
+layout_mode = 2
+text = "Needs"
+
+[node name="Row1" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
+layout_mode = 2
+
+[node name="Row2" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
+layout_mode = 2
+
+[node name="Row3" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
+layout_mode = 2
+
+[node name="Row4" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
+layout_mode = 2
 
 [connection signal="timeout" from="Timer" to="." method="OnTimeTimeout"]
 [connection signal="input_event" from="Floor/Area3D" to="Floor" method="OnAreaInputEvent"]
