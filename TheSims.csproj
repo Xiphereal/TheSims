@@ -1,5 +1,4 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.1.3">
-
+﻿<Project Sdk="Godot.NET.Sdk/4.2.0">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<EnableDynamicLoading>true</EnableDynamicLoading>
@@ -7,7 +6,6 @@
 			 This is due to a Godot restriction that is being worked on https://github.com/godotengine/godot/pull/77822. -->
 		<RootNamespace>Inputs</RootNamespace>
 	</PropertyGroup>
-
 	<!-- Due to a Godot design decision, the Godot csproj entrypoint must be located at the same 
 		 location that the project.godot, that being the root level. 
 		 This forces to explicitly exclude the rest of the csprojs of the Godot project. -->
@@ -17,9 +15,7 @@
 		<EmbeddedResource Remove="Code\Control\**" />
 		<EmbeddedResource Remove="Code\Domain\**" />
 	</ItemGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="Code\Control\Control.csproj" />
 	</ItemGroup>
-
 </Project>
