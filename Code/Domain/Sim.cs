@@ -10,6 +10,7 @@ namespace Domain
 
     public class Sim
     {
+        private const int ArbitraryValueThatShouldDependOnTheInteractableQuality = 5;
         private Queue<Action> actions = new();
         private System.TimeSpan currentActionElapsedTime;
 
@@ -58,6 +59,7 @@ namespace Domain
 
         public void Eat(Food food)
         {
+            // Esto en algún momento fallará y no sabré por qué.
             Needs.Hunger += food.Repletion;
         }
 
@@ -68,23 +70,23 @@ namespace Domain
 
         public void Sleep()
         {
-            Needs.Energy += 5;
+            Needs.Energy += ArbitraryValueThatShouldDependOnTheInteractableQuality;
             RestoreComfort();
         }
 
         public void RestoreHygiene()
         {
-            Needs.Hygiene = 100;
+            Needs.Hygiene += ArbitraryValueThatShouldDependOnTheInteractableQuality;
         }
 
         public void RestoreBladder()
         {
-            Needs.Bladder = 100;
+            Needs.Bladder += ArbitraryValueThatShouldDependOnTheInteractableQuality;
         }
 
         public void RestoreComfort()
         {
-            Needs.Comfort += 5;
+            Needs.Comfort += ArbitraryValueThatShouldDependOnTheInteractableQuality;
         }
 
         public void ContinuePerformingActionAtHand(int during = 1)

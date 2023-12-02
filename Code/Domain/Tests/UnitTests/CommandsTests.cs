@@ -173,14 +173,15 @@ namespace Domain.Tests.UnitTests
             time.Forward(howMuch: 1);
             var comfortAfterOneTimeUnit = sim.Comfort;
             comfortAfterOneTimeUnit.Should().BeGreaterThan(MinimumNeedValue);
-            sim.Bladder.Should().Be(MinimumNeedValue);
+            var bladderAfterOneTimeUnit = sim.Bladder;
+            bladderAfterOneTimeUnit.Should().Be(MinimumNeedValue);
 
             time.Forward(howMuch: longerAction.Duration.Seconds - 1);
             sim.Comfort.Should().BeGreaterThan(comfortAfterOneTimeUnit);
             sim.Bladder.Should().Be(MinimumNeedValue);
 
             time.Forward(howMuch: shorterAction.Duration.Seconds);
-            sim.Bladder.Should().BeCloseTo(MaximumNeedValue, delta: 5);
+            sim.Bladder.Should().BeGreaterThan(bladderAfterOneTimeUnit);
         }
 
         [Theory]

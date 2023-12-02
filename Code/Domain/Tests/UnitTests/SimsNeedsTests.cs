@@ -45,7 +45,7 @@ namespace Domain.Tests.UnitTests
 
             sut.Perform(new TakeAShower(new Shower(at: Vector3.Zero)));
 
-            sut.Hygiene.Should().Be(NeedMaxValue);
+            sut.Hygiene.Should().BeGreaterThan(80);
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace Domain.Tests.UnitTests
 
             sut.Perform(new TakeAShower(new Bath(at: Vector3.Zero)));
 
-            sut.Hygiene.Should().Be(NeedMaxValue);
+            sut.Hygiene.Should().BeGreaterThan(80);
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace Domain.Tests.UnitTests
 
             sut.Perform(new UseToilet(new Toilet(at: Vector3.Zero)));
 
-            sut.Bladder.Should().Be(NeedMaxValue);
+            sut.Bladder.Should().BeGreaterThan(80);
         }
 
         [Fact]
