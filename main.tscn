@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=18 format=3 uid="uid://deypjsupvra4r"]
 
 [ext_resource type="Script" path="res://Code/Inputs/Lot.cs" id="1_fvg03"]
 [ext_resource type="PackedScene" uid="uid://thh26uferhtv" path="res://Scenes/bed.tscn" id="1_q408g"]
@@ -7,10 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://bvmiuelovw0wa" path="res://Resources/Images/ActionsIcons/MoveHere.png" id="2_ntcnx"]
 [ext_resource type="Script" path="res://Code/Inputs/SimInput.cs" id="4_vrrh7"]
 [ext_resource type="Script" path="res://Code/Inputs/PlayerInput.cs" id="5_txm3g"]
-[ext_resource type="Script" path="res://Code/Inputs/UI.cs" id="6_2m6bx"]
+[ext_resource type="Script" path="res://Code/Inputs/UI/UI.cs" id="8_0rixp"]
 [ext_resource type="Theme" uid="uid://l0j5t44euyhw" path="res://Resources/Theme.tres" id="9_0mhxy"]
 [ext_resource type="LabelSettings" uid="uid://khvjwnrw3lxm" path="res://Resources/Title.tres" id="10_j4tt7"]
 [ext_resource type="LabelSettings" uid="uid://bsyr5hitpo2if" path="res://Resources/Normal.tres" id="11_tgd3p"]
+[ext_resource type="Script" path="res://Code/Inputs/UI/NeedValue.cs" id="12_dtwq7"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6x0y"]
 
@@ -78,7 +79,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("6_2m6bx")
+script = ExtResource("8_0rixp")
 
 [node name="ActionsQueue" type="HBoxContainer" parent="UI"]
 layout_mode = 1
@@ -129,6 +130,7 @@ layout_mode = 2
 size_flags_vertical = 1
 value = 50.0
 show_percentage = false
+script = ExtResource("12_dtwq7")
 
 [node name="Energy" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row1"]
 layout_mode = 2
@@ -145,6 +147,7 @@ layout_mode = 2
 size_flags_vertical = 1
 value = 25.0
 show_percentage = false
+script = ExtResource("12_dtwq7")
 
 [node name="Row2" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
 layout_mode = 2
@@ -166,6 +169,7 @@ layout_mode = 2
 size_flags_vertical = 1
 value = 10.0
 show_percentage = false
+script = ExtResource("12_dtwq7")
 
 [node name="Fun" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row2"]
 layout_mode = 2
@@ -203,6 +207,7 @@ layout_mode = 2
 size_flags_vertical = 1
 value = 50.0
 show_percentage = false
+script = ExtResource("12_dtwq7")
 
 [node name="Social" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row3"]
 layout_mode = 2
@@ -240,6 +245,7 @@ layout_mode = 2
 size_flags_vertical = 1
 value = 90.0
 show_percentage = false
+script = ExtResource("12_dtwq7")
 
 [node name="Room" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row4"]
 layout_mode = 2
@@ -257,4 +263,9 @@ size_flags_vertical = 1
 show_percentage = false
 
 [connection signal="timeout" from="Timer" to="." method="OnTimeTimeout"]
+[connection signal="timeout" from="Timer" to="UI/Needs/VBoxContainer/Row1/Hunger/Value" method="OnTimeTimeout"]
+[connection signal="timeout" from="Timer" to="UI/Needs/VBoxContainer/Row1/Energy/Value" method="OnTimeTimeout"]
+[connection signal="timeout" from="Timer" to="UI/Needs/VBoxContainer/Row2/Comfort/Value" method="OnTimeTimeout"]
+[connection signal="timeout" from="Timer" to="UI/Needs/VBoxContainer/Row3/Hygiene/Value" method="OnTimeTimeout"]
+[connection signal="timeout" from="Timer" to="UI/Needs/VBoxContainer/Row4/Bladder/Value" method="OnTimeTimeout"]
 [connection signal="input_event" from="Floor/Area3D" to="Floor" method="OnAreaInputEvent"]

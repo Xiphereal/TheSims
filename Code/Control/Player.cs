@@ -8,6 +8,8 @@ namespace Control
     {
         private Sim activeSim;
 
+        public Needs ActiveSimNeeds => activeSim.Needs;
+
         public void ActiveSim(Sim sim)
         {
             activeSim = sim;

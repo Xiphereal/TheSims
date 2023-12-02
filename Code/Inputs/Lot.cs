@@ -26,9 +26,9 @@ namespace Inputs
                 .QueueFree();
         }
 
-        private UI FindUI()
+        private Godot.UI FindUI()
         {
-            return GetNode<UI>("/root/Root/UI");
+            return GetNode<Godot.UI>("/root/Root/UI");
         }
 
         private Domain.Sim FindAnySimInScene()

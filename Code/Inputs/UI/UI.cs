@@ -86,7 +86,7 @@ namespace Godot
             }
         }
 
-        private Player FindPlayer()
+        public Player FindPlayer()
         {
             return GetNode<PlayerInput>("../Player").Player;
         }
