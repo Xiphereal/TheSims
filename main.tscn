@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=17 format=3 uid="uid://deypjsupvra4r"]
 
 [ext_resource type="Script" path="res://Code/Inputs/Lot.cs" id="1_fvg03"]
 [ext_resource type="PackedScene" uid="uid://thh26uferhtv" path="res://Scenes/bed.tscn" id="1_q408g"]
@@ -8,7 +8,9 @@
 [ext_resource type="Script" path="res://Code/Inputs/SimInput.cs" id="4_vrrh7"]
 [ext_resource type="Script" path="res://Code/Inputs/PlayerInput.cs" id="5_txm3g"]
 [ext_resource type="Script" path="res://Code/Inputs/UI.cs" id="6_2m6bx"]
-[ext_resource type="Theme" uid="uid://l0j5t44euyhw" path="res://Resources/new_theme.tres" id="9_0mhxy"]
+[ext_resource type="Theme" uid="uid://l0j5t44euyhw" path="res://Resources/Theme.tres" id="9_0mhxy"]
+[ext_resource type="LabelSettings" uid="uid://khvjwnrw3lxm" path="res://Resources/Title.tres" id="10_j4tt7"]
+[ext_resource type="LabelSettings" uid="uid://bsyr5hitpo2if" path="res://Resources/Normal.tres" id="11_tgd3p"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6x0y"]
 
@@ -85,34 +87,168 @@ offset_bottom = 69.0
 
 [node name="Needs" type="PanelContainer" parent="UI"]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 772.0
+offset_left = -446.0
 offset_top = -175.0
-grow_horizontal = 2
+grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("9_0mhxy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Needs"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/Needs/VBoxContainer"]
+[node name="Title" type="Label" parent="UI/Needs/VBoxContainer"]
 layout_mode = 2
 text = "Needs"
+label_settings = ExtResource("10_j4tt7")
 
 [node name="Row1" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Hunger" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row1"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/Needs/VBoxContainer/Row1/Hunger"]
+layout_mode = 2
+text = "Hunger"
+label_settings = ExtResource("11_tgd3p")
+horizontal_alignment = 1
+
+[node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row1/Hunger"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 1
+value = 50.0
+show_percentage = false
+
+[node name="Energy" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row1"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/Needs/VBoxContainer/Row1/Energy"]
+layout_mode = 2
+text = "Energy"
+label_settings = ExtResource("11_tgd3p")
+horizontal_alignment = 1
+
+[node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row1/Energy"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 1
+value = 25.0
+show_percentage = false
 
 [node name="Row2" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
 layout_mode = 2
+alignment = 1
+
+[node name="Comfort" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row2"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/Needs/VBoxContainer/Row2/Comfort"]
+layout_mode = 2
+text = "Comfort"
+label_settings = ExtResource("11_tgd3p")
+horizontal_alignment = 1
+
+[node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row2/Comfort"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 1
+value = 10.0
+show_percentage = false
+
+[node name="Fun" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row2"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/Needs/VBoxContainer/Row2/Fun"]
+layout_mode = 2
+text = "Fun"
+label_settings = ExtResource("11_tgd3p")
+horizontal_alignment = 1
+
+[node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row2/Fun"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 1
+value = 100.0
+show_percentage = false
 
 [node name="Row3" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
 layout_mode = 2
+alignment = 1
+
+[node name="Hygiene" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row3"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/Needs/VBoxContainer/Row3/Hygiene"]
+layout_mode = 2
+text = "Hygiene"
+label_settings = ExtResource("11_tgd3p")
+horizontal_alignment = 1
+
+[node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row3/Hygiene"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 1
+value = 50.0
+show_percentage = false
+
+[node name="Social" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row3"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/Needs/VBoxContainer/Row3/Social"]
+layout_mode = 2
+text = "Social"
+label_settings = ExtResource("11_tgd3p")
+horizontal_alignment = 1
+
+[node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row3/Social"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 1
+value = 40.0
+show_percentage = false
 
 [node name="Row4" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
 layout_mode = 2
+alignment = 1
+
+[node name="Bladder" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row4"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/Needs/VBoxContainer/Row4/Bladder"]
+layout_mode = 2
+text = "Bladder"
+label_settings = ExtResource("11_tgd3p")
+horizontal_alignment = 1
+
+[node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row4/Bladder"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 1
+value = 90.0
+show_percentage = false
+
+[node name="Room" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row4"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/Needs/VBoxContainer/Row4/Room"]
+layout_mode = 2
+text = "Room"
+label_settings = ExtResource("11_tgd3p")
+horizontal_alignment = 1
+
+[node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row4/Room"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 1
+show_percentage = false
 
 [connection signal="timeout" from="Timer" to="." method="OnTimeTimeout"]
 [connection signal="input_event" from="Floor/Area3D" to="Floor" method="OnAreaInputEvent"]
