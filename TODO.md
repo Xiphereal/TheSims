@@ -17,7 +17,7 @@
 - Sims can themselves cancel Actions (based on mood, inability to perform, etc.).
 
 ## Could
-- Add the rest of Needs.
+- Add the rest of Needs (Room, Fun & Social).
 - Add the rest of Actions.
 - Make laying to restore Comfort.
 - Work.
