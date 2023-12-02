@@ -94,10 +94,7 @@ namespace Domain
                 return;
             }
 
-            currentActionElapsedTime += new System.TimeSpan(
-                hours: 0,
-                minutes: 0,
-                seconds: during);
+            currentActionElapsedTime += System.TimeSpan.FromSeconds(during);
 
             if (actions.Peek().Duration <= currentActionElapsedTime)
             {
