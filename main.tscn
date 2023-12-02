@@ -99,7 +99,9 @@ grow_vertical = 0
 theme = ExtResource("9_0mhxy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Needs"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="Title" type="Label" parent="UI/Needs/VBoxContainer"]
 layout_mode = 2
@@ -109,6 +111,7 @@ label_settings = ExtResource("10_j4tt7")
 [node name="Row1" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/separation = 66
 alignment = 1
 
 [node name="Hunger" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row1"]
@@ -145,6 +148,7 @@ show_percentage = false
 
 [node name="Row2" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 66
 alignment = 1
 
 [node name="Comfort" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row2"]
@@ -181,6 +185,7 @@ show_percentage = false
 
 [node name="Row3" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 66
 alignment = 1
 
 [node name="Hygiene" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row3"]
@@ -217,6 +222,7 @@ show_percentage = false
 
 [node name="Row4" type="HBoxContainer" parent="UI/Needs/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 66
 alignment = 1
 
 [node name="Bladder" type="VBoxContainer" parent="UI/Needs/VBoxContainer/Row4"]
