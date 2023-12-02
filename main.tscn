@@ -121,7 +121,7 @@ label_settings = ExtResource("11_tgd3p")
 horizontal_alignment = 1
 
 [node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row1/Hunger"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
 value = 50.0
@@ -137,7 +137,7 @@ label_settings = ExtResource("11_tgd3p")
 horizontal_alignment = 1
 
 [node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row1/Energy"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
 value = 25.0
@@ -157,7 +157,7 @@ label_settings = ExtResource("11_tgd3p")
 horizontal_alignment = 1
 
 [node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row2/Comfort"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
 value = 10.0
@@ -173,7 +173,7 @@ label_settings = ExtResource("11_tgd3p")
 horizontal_alignment = 1
 
 [node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row2/Fun"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
 value = 100.0
@@ -193,7 +193,7 @@ label_settings = ExtResource("11_tgd3p")
 horizontal_alignment = 1
 
 [node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row3/Hygiene"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
 value = 50.0
@@ -209,7 +209,7 @@ label_settings = ExtResource("11_tgd3p")
 horizontal_alignment = 1
 
 [node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row3/Social"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
 value = 40.0
@@ -229,7 +229,7 @@ label_settings = ExtResource("11_tgd3p")
 horizontal_alignment = 1
 
 [node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row4/Bladder"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
 value = 90.0
@@ -245,7 +245,7 @@ label_settings = ExtResource("11_tgd3p")
 horizontal_alignment = 1
 
 [node name="Value" type="ProgressBar" parent="UI/Needs/VBoxContainer/Row4/Room"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
 show_percentage = false
