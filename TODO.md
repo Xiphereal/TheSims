@@ -1,7 +1,6 @@
 # Features
 
 ## Must
-- Display Needs.
 - Sim moves to points instead of teleporting.
 - Control camera.
 - Add different rates of increment of Needs depending of the specific Need.
@@ -23,8 +22,8 @@
 - Work.
 - Buy & building cost simoleons.
 - Adequate Needs increment values of Furnitures to the real ones:
-    - Ranges from 1 to 10.
-    - Also, Needs values goes from -100 to 100.
+	- Ranges from 1 to 10.
+	- Also, Needs values goes from -100 to 100.
 - Hours & days.
 
  ## Won't have
