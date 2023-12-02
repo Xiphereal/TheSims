@@ -12,6 +12,7 @@ namespace Domain.Tests.UnitTests
     public class CommandsTests
     {
         private const int MinimumNeedValue = 0;
+        private const int MaximumNeedValue = 100;
 
         [Fact]
         public void Actions_can_be_commanded()
@@ -134,10 +135,24 @@ namespace Domain.Tests.UnitTests
             sim.Command(action);
 
             time.Forward(howMuch: 1);
-            sim.Comfort.Should().Be(MinimumNeedValue);
+            sim.Comfort.Should().BeCloseTo(MinimumNeedValue, 5);
 
             time.Forward(howMuch: action.Duration.Seconds - 1);
             sim.Comfort.Should().BeGreaterThan(MinimumNeedValue);
+        }
+
+        [Fact]
+        public void Actions_satisfy_needs_right_from_their_start()
+        {
+            Time time = new();
+            Lot lot = Lot().With(time).Build();
+            Sim sim = SimWithAllNeedsToMinimum().At(Vector3.Zero).Build();
+            lot.EnteredBy(sim);
+
+            sim.Command(new Sleep(on: new Sofa(at: sim.Position)));
+
+            time.Forward(howMuch: 1);
+            sim.Energy.Should().BeCloseTo(MinimumNeedValue, delta: 5);
         }
 
         [Fact]
@@ -156,15 +171,16 @@ namespace Domain.Tests.UnitTests
             sim.Command(shorterAction);
 
             time.Forward(howMuch: 1);
-            sim.Comfort.Should().Be(MinimumNeedValue);
+            var comfortAfterOneTimeUnit = sim.Comfort;
+            comfortAfterOneTimeUnit.Should().BeGreaterThan(MinimumNeedValue);
             sim.Bladder.Should().Be(MinimumNeedValue);
 
-            time.Forward(howMuch: longerAction.Duration.Seconds);
-            sim.Comfort.Should().BeGreaterThan(MinimumNeedValue);
+            time.Forward(howMuch: longerAction.Duration.Seconds - 1);
+            sim.Comfort.Should().BeGreaterThan(comfortAfterOneTimeUnit);
             sim.Bladder.Should().Be(MinimumNeedValue);
 
             time.Forward(howMuch: shorterAction.Duration.Seconds);
-            sim.Bladder.Should().BeGreaterThan(MinimumNeedValue);
+            sim.Bladder.Should().BeCloseTo(MaximumNeedValue, delta: 5);
         }
 
         [Theory]
@@ -179,7 +195,7 @@ namespace Domain.Tests.UnitTests
                     from: new Refrigerator(
                         hunger: refrigeratorHunger,
                         at: Vector3.Zero))
-                .Perform(sim);
+                .ContinuePerforming(sim);
 
             sim.Hunger.Should().Be(initialHunger + refrigeratorHunger);
         }

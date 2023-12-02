@@ -91,23 +91,31 @@ namespace Domain.Tests.UnitTests
         [Fact]
         public void Both_Energy_and_Comfort_are_restored_by_sleeping_on_bed()
         {
-            Sim sut = Sim().WithEnergy(80).WithComfort(80).Build();
+            const int initial = 80;
+            Sim sim = Sim()
+                .WithEnergy(initial)
+                .WithComfort(initial)
+                .Build();
 
-            sut.Perform(new Sleep(on: new Bed(at: Vector3.Zero)));
+            sim.Perform(new Sleep(on: new Bed(at: Vector3.Zero)));
 
-            sut.Energy.Should().Be(NeedMaxValue);
-            sut.Comfort.Should().Be(NeedMaxValue);
+            sim.Energy.Should().BeGreaterThan(initial);
+            sim.Comfort.Should().BeGreaterThan(initial);
         }
 
         [Fact]
         public void Both_Energy_and_Comfort_are_restored_by_sleeping_on_sofa()
         {
-            Sim sut = Sim().WithEnergy(80).WithComfort(80).Build();
+            const int initial = 80;
+            Sim sim = Sim()
+                .WithEnergy(initial)
+                .WithComfort(initial)
+                .Build();
 
-            sut.Perform(new Sleep(on: new Sofa(at: Vector3.Zero)));
+            sim.Perform(new Sleep(on: new Sofa(at: sim.Position)));
 
-            sut.Energy.Should().Be(NeedMaxValue);
-            sut.Comfort.Should().Be(NeedMaxValue);
+            sim.Energy.Should().BeGreaterThan(initial);
+            sim.Comfort.Should().BeGreaterThan(initial);
         }
 
         [Fact]
@@ -127,7 +135,7 @@ namespace Domain.Tests.UnitTests
 
             sut.Perform(new Sit(on: new Sofa(at: Vector3.Zero)));
 
-            sut.Comfort.Should().Be(NeedMaxValue);
+            sut.Comfort.Should().BeGreaterThan(80);
         }
 
         [Fact]

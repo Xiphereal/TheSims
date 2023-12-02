@@ -17,8 +17,9 @@ namespace Domain.Actions
 
         public override System.TimeSpan Duration => System.TimeSpan.FromSeconds(15);
 
-        public override void Perform(Sim performer)
+        public override void ContinuePerforming(Sim performer)
         {
+            base.ContinuePerforming(performer);
             performer.RestoreHygiene();
         }
     }

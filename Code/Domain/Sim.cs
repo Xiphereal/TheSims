@@ -51,7 +51,7 @@ namespace Domain
 
         public void Perform(Action action)
         {
-            action.Perform(performer: this);
+            action.ContinuePerforming(performer: this);
 
             ActionPerformed?.Invoke(performed: action);
         }
@@ -68,7 +68,7 @@ namespace Domain
 
         public void Sleep()
         {
-            Needs.Energy = 100;
+            Needs.Energy += 5;
             RestoreComfort();
         }
 
@@ -84,7 +84,7 @@ namespace Domain
 
         public void RestoreComfort()
         {
-            Needs.Comfort = 100;
+            Needs.Comfort += 5;
         }
 
         public void ContinuePerformingActionAtHand(int during = 1)
@@ -96,18 +96,19 @@ namespace Domain
 
             currentActionElapsedTime += System.TimeSpan.FromSeconds(during);
 
-            if (actions.Peek().Duration <= currentActionElapsedTime)
-            {
-                PerformNextAction();
-                currentActionElapsedTime = System.TimeSpan.Zero;
-            }
-        }
-
-        private void PerformNextAction()
-        {
             if (!NearToInteractable())
                 Position = actions.Peek().InteractablePosition;
-            Perform(actions.Dequeue());
+
+            for (int i = 0; i < during; i++)
+                actions.Peek().ContinuePerforming(this);
+
+            if (actions.Peek().Duration <= currentActionElapsedTime)
+            {
+                Action performed = actions.Dequeue();
+                ActionPerformed?.Invoke(performed);
+
+                currentActionElapsedTime = System.TimeSpan.Zero;
+            }
         }
     }
 }

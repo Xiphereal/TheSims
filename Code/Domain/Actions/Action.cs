@@ -5,6 +5,8 @@ namespace Domain.Actions
 {
     public abstract class Action
     {
+        private TimeSpan elapsed;
+
         public Action(Vector3 interactablePosition)
         {
             InteractablePosition = interactablePosition;
@@ -14,8 +16,14 @@ namespace Domain.Actions
 
         public Vector3 InteractablePosition { get; }
         public abstract TimeSpan Duration { get; }
+        public bool IsOver { get; set; }
 
-        public abstract void Perform(Sim performer);
+        public virtual void ContinuePerforming(Sim performer)
+        {
+            elapsed += TimeSpan.FromSeconds(1);
+
+            IsOver = elapsed >= Duration;
+        }
 
         public override string ToString()
         {

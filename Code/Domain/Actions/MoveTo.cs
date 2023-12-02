@@ -21,8 +21,9 @@ namespace Domain
         // regarding the Sim position relative to the destination point.
         public override System.TimeSpan Duration => System.TimeSpan.FromSeconds(1);
 
-        public override void Perform(Sim performer)
+        public override void ContinuePerforming(Sim performer)
         {
+            base.ContinuePerforming(performer);
             performer.Position = destination;
         }
 
