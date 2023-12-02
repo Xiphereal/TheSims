@@ -1,7 +1,6 @@
 # Features
 
 ## Must
-- Actions satisfy Needs right from their start.
 - Display Needs.
 - Sim moves to points instead of teleporting.
 - Control camera.
