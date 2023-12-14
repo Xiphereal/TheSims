@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=19 format=3 uid="uid://deypjsupvra4r"]
 
 [ext_resource type="Script" path="res://Code/Inputs/Lot.cs" id="1_fvg03"]
 [ext_resource type="PackedScene" uid="uid://thh26uferhtv" path="res://Scenes/bed.tscn" id="1_q408g"]
 [ext_resource type="Script" path="res://Code/Inputs/Floor.cs" id="1_uv3ld"]
 [ext_resource type="PackedScene" uid="uid://bj08b2mxksoof" path="res://Scenes/refrigerator.tscn" id="2_0wiyi"]
 [ext_resource type="Texture2D" uid="uid://bvmiuelovw0wa" path="res://Resources/Images/ActionsIcons/MoveHere.png" id="2_ntcnx"]
+[ext_resource type="Script" path="res://Code/Inputs/Camera/TruckMovement.gd" id="4_5ad3g"]
 [ext_resource type="Script" path="res://Code/Inputs/SimInput.cs" id="4_vrrh7"]
 [ext_resource type="Script" path="res://Code/Inputs/PlayerInput.cs" id="5_txm3g"]
 [ext_resource type="Script" path="res://Code/Inputs/UI/UI.cs" id="8_0rixp"]
@@ -50,10 +51,11 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_wkecx")
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(0.721615, -0.536047, 0.438093, -7.45058e-09, 0.632813, 0.774304, -0.692294, -0.55875, 0.456648, 1.66684, 3.17442, 1.55481)
+transform = Transform3D(1, 0, 0, 0, 0.633381, 0.77384, 0, -0.77384, 0.633381, 0.0156589, 3.17442, 2.7571)
+script = ExtResource("4_5ad3g")
 
 [node name="Bed" parent="." instance=ExtResource("1_q408g")]
-transform = Transform3D(1, 0, 0, 0, 0.19961, 0, 0, 0, 1.53923, 1.36865, 0.238504, -0.948181)
+transform = Transform3D(0.919163, 0, -0.606268, 0, 0.19961, 0, 0.393878, 0, 1.4148, 1.97232, 0.238504, -0.447296)
 
 [node name="Refrigerator" parent="." instance=ExtResource("2_0wiyi")]
 transform = Transform3D(-0.410189, 0, 0.43855, 0, 1.41175, 0, -0.672631, 0, -0.26744, -2.03191, 0.68703, 1.23067)
