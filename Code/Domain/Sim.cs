@@ -13,6 +13,7 @@ namespace Domain
         private const int ArbitraryValueThatShouldDependOnTheInteractableQuality = 5;
         private Queue<Action> actions = new();
         private System.TimeSpan currentActionElapsedTime;
+        private Vector3 position;
 
         public int Hunger => Needs.Hunger;
         public int Hygiene => Needs.Hygiene;
@@ -21,9 +22,19 @@ namespace Domain
         public int Comfort => Needs.Comfort;
         public Needs Needs { get; }
 
-        public Vector3 Position { get; set; }
+        public Vector3 Position
+        {
+            get => position;
+            set
+            {
+                position = value;
+                Moved?.Invoke(this, System.EventArgs.Empty);
+            }
+        }
 
         public event ActionPerformed ActionPerformed;
+
+        public event System.EventHandler Moved;
 
         public Sim(Needs needs)
         {

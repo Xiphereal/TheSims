@@ -1,5 +1,4 @@
 using Domain;
-using Domain.Actions;
 using Inputs.Extensions;
 
 namespace Godot
@@ -17,12 +16,7 @@ namespace Godot
 
         public SimInput()
         {
-            Sim.ActionPerformed += Alkdfhalsdfh;
-        }
-
-        private void Alkdfhalsdfh(Action performed)
-        {
-            Position = performed.InteractablePosition.ToGodotVector();
+            Sim.Moved += (_, _) => Position = Sim.Position.ToGodotVector();
         }
     }
 }
