@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=23 format=3 uid="uid://deypjsupvra4r"]
 
 [ext_resource type="Script" path="res://Code/Inputs/Lot.cs" id="1_fvg03"]
 [ext_resource type="PackedScene" uid="uid://thh26uferhtv" path="res://Scenes/bed.tscn" id="1_q408g"]
@@ -13,6 +13,10 @@
 [ext_resource type="LabelSettings" uid="uid://khvjwnrw3lxm" path="res://Resources/Title.tres" id="10_j4tt7"]
 [ext_resource type="LabelSettings" uid="uid://bsyr5hitpo2if" path="res://Resources/Normal.tres" id="11_tgd3p"]
 [ext_resource type="Script" path="res://Code/Inputs/UI/NeedValue.cs" id="12_dtwq7"]
+[ext_resource type="Texture2D" uid="uid://bn7h3nwp2jfkh" path="res://Resources/Images/Buttons/Pause.png" id="14_1fm2o"]
+[ext_resource type="Texture2D" uid="uid://bxk4v3u7r4qax" path="res://Resources/Images/Buttons/Play.png" id="15_w4sn7"]
+[ext_resource type="Texture2D" uid="uid://dvri1lieuxg1g" path="res://Resources/Images/Buttons/Playx2.png" id="16_a8lxu"]
+[ext_resource type="Texture2D" uid="uid://ba0icsls7xshi" path="res://Resources/Images/Buttons/Playx3.png" id="17_tknk1"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6x0y"]
 
@@ -81,6 +85,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("9_0mhxy")
 script = ExtResource("8_0rixp")
 
 [node name="ActionsQueue" type="HBoxContainer" parent="UI"]
@@ -99,7 +104,6 @@ offset_left = -446.0
 offset_top = -175.0
 grow_horizontal = 0
 grow_vertical = 0
-theme = ExtResource("9_0mhxy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Needs"]
 custom_minimum_size = Vector2(300, 0)
@@ -263,6 +267,48 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
 show_percentage = false
+
+[node name="TimeControl" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+offset_right = 105.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/TimeControl"]
+layout_mode = 2
+
+[node name="Pause" type="Button" parent="UI/TimeControl/HBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+icon = ExtResource("14_1fm2o")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="x1" type="Button" parent="UI/TimeControl/HBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+icon = ExtResource("15_w4sn7")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="x2" type="Button" parent="UI/TimeControl/HBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+icon = ExtResource("16_a8lxu")
+flat = true
+expand_icon = true
+
+[node name="x3" type="Button" parent="UI/TimeControl/HBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+icon = ExtResource("17_tknk1")
+flat = true
+expand_icon = true
 
 [connection signal="timeout" from="Timer" to="." method="OnTimeTimeout"]
 [connection signal="timeout" from="Timer" to="UI/Needs/VBoxContainer/Row1/Hunger/Value" method="OnTimeTimeout"]
