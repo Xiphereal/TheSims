@@ -5,7 +5,6 @@
 - bug: Sim should move to interactable at the start of the action, not when it ends.
 - bug: Laying on bed restores energy; it should only restore comfort.
 - Add different rates of increment of Needs depending of the specific Need.
-- Allow to control time.
 
 ## Should
 - Place furniture.

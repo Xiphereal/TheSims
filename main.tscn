@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://deypjsupvra4r"]
+[gd_scene load_steps=24 format=3 uid="uid://deypjsupvra4r"]
 
 [ext_resource type="Script" path="res://Code/Inputs/Lot.cs" id="1_fvg03"]
 [ext_resource type="PackedScene" uid="uid://thh26uferhtv" path="res://Scenes/bed.tscn" id="1_q408g"]
@@ -14,6 +14,7 @@
 [ext_resource type="LabelSettings" uid="uid://bsyr5hitpo2if" path="res://Resources/Normal.tres" id="11_tgd3p"]
 [ext_resource type="Script" path="res://Code/Inputs/UI/NeedValue.cs" id="12_dtwq7"]
 [ext_resource type="Texture2D" uid="uid://bn7h3nwp2jfkh" path="res://Resources/Images/Buttons/Pause.png" id="14_1fm2o"]
+[ext_resource type="Script" path="res://Code/Inputs/UI/TimeControl.gd" id="15_r5myv"]
 [ext_resource type="Texture2D" uid="uid://bxk4v3u7r4qax" path="res://Resources/Images/Buttons/Play.png" id="15_w4sn7"]
 [ext_resource type="Texture2D" uid="uid://dvri1lieuxg1g" path="res://Resources/Images/Buttons/Playx2.png" id="16_a8lxu"]
 [ext_resource type="Texture2D" uid="uid://ba0icsls7xshi" path="res://Resources/Images/Buttons/Playx3.png" id="17_tknk1"]
@@ -280,35 +281,46 @@ grow_vertical = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/TimeControl"]
 layout_mode = 2
 
-[node name="Pause" type="Button" parent="UI/TimeControl/HBoxContainer"]
+[node name="Pause" type="Button" parent="UI/TimeControl/HBoxContainer" node_paths=PackedStringArray("timer")]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 icon = ExtResource("14_1fm2o")
 flat = true
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("15_r5myv")
+timer = NodePath("../../../../Timer")
 
-[node name="x1" type="Button" parent="UI/TimeControl/HBoxContainer"]
+[node name="x1" type="Button" parent="UI/TimeControl/HBoxContainer" node_paths=PackedStringArray("timer")]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 icon = ExtResource("15_w4sn7")
 flat = true
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("15_r5myv")
+timer = NodePath("../../../../Timer")
+wait_time = 1.0
 
-[node name="x2" type="Button" parent="UI/TimeControl/HBoxContainer"]
+[node name="x2" type="Button" parent="UI/TimeControl/HBoxContainer" node_paths=PackedStringArray("timer")]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 icon = ExtResource("16_a8lxu")
 flat = true
 expand_icon = true
+script = ExtResource("15_r5myv")
+timer = NodePath("../../../../Timer")
+wait_time = 0.4
 
-[node name="x3" type="Button" parent="UI/TimeControl/HBoxContainer"]
+[node name="x3" type="Button" parent="UI/TimeControl/HBoxContainer" node_paths=PackedStringArray("timer")]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 icon = ExtResource("17_tknk1")
 flat = true
 expand_icon = true
+script = ExtResource("15_r5myv")
+timer = NodePath("../../../../Timer")
+wait_time = 0.2
 
 [connection signal="timeout" from="Timer" to="." method="OnTimeTimeout"]
 [connection signal="timeout" from="Timer" to="UI/Needs/VBoxContainer/Row1/Hunger/Value" method="OnTimeTimeout"]
@@ -317,3 +329,7 @@ expand_icon = true
 [connection signal="timeout" from="Timer" to="UI/Needs/VBoxContainer/Row3/Hygiene/Value" method="OnTimeTimeout"]
 [connection signal="timeout" from="Timer" to="UI/Needs/VBoxContainer/Row4/Bladder/Value" method="OnTimeTimeout"]
 [connection signal="input_event" from="Floor/Area3D" to="Floor" method="OnAreaInputEvent"]
+[connection signal="pressed" from="UI/TimeControl/HBoxContainer/Pause" to="UI/TimeControl/HBoxContainer/Pause" method="_on_pressed"]
+[connection signal="pressed" from="UI/TimeControl/HBoxContainer/x1" to="UI/TimeControl/HBoxContainer/x1" method="_on_pressed"]
+[connection signal="pressed" from="UI/TimeControl/HBoxContainer/x2" to="UI/TimeControl/HBoxContainer/x2" method="_on_pressed"]
+[connection signal="pressed" from="UI/TimeControl/HBoxContainer/x3" to="UI/TimeControl/HBoxContainer/x3" method="_on_pressed"]
