@@ -2,7 +2,6 @@
 
 ## Must
 - Sim moves to points instead of teleporting.
-- bug: Laying on bed restores energy; it should only restore comfort.
 - Add different rates of increment of Needs depending of the specific Need.
 
 ## Should

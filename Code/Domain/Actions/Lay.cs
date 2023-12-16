@@ -16,7 +16,7 @@ namespace Domain.Actions
         public override void ContinuePerforming(Sim performer)
         {
             base.ContinuePerforming(performer);
-            performer.Sleep();
+            performer.RestoreComfort();
         }
     }
 }

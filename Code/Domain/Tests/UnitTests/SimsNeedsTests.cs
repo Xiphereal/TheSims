@@ -119,6 +119,21 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
+        public void Laying_restores_comfort_but_not_energy()
+        {
+            const int initial = 80;
+            Sim sim = Sim()
+                .WithEnergy(initial)
+                .WithComfort(initial)
+                .Build();
+
+            sim.Perform(new Lay(sim.Position));
+
+            sim.Comfort.Should().BeGreaterThan(initial);
+            sim.Energy.Should().Be(initial);
+        }
+
+        [Fact]
         public void Energy_cannot_overflow()
         {
             Sim sut = Sim().Build();
