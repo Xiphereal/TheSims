@@ -16,7 +16,16 @@ namespace Godot
 
         public SimInput()
         {
-            Sim.Moved += (_, _) => Position = Sim.Position.ToGodotVector();
+            Sim.Position = Position.ToNumericsVector();
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            Position = Position.MoveToward(
+                Sim.TargetDestination.ToGodotVector(),
+                (float)delta);
+
+            Sim.Position = Position.ToNumericsVector();
         }
     }
 }

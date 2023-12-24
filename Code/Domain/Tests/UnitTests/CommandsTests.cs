@@ -131,21 +131,6 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
-        public void Sim_movements_are_notified()
-        {
-            Sim sim = Sim().At(Vector3.Zero).Build();
-            bool notified = false;
-            sim.Moved += delegate (object? sender, System.EventArgs e)
-            {
-                notified = true;
-            };
-
-            sim.Position = Vector3.One;
-
-            notified.Should().BeTrue();
-        }
-
-        [Fact]
         public void Actions_take_a_while_to_complete()
         {
             Time time = new();

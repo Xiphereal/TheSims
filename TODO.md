@@ -1,14 +1,11 @@
 # Features
 
 ## Must
-- Sim moves to points instead of teleporting.
-    - Sim does not start action until they're there.
-	- Sim ask each time step if they're there already.
-	- View moves Sim towards destination each time step.
-	- View notifies to Sim when they're already there.
 - Add different rates of increment of Needs depending of the specific Need.
 
 ## Should
+- bug: MoveTo action stops after a while; why? MoveTo has a duration based on time, even when it shouldn't have any.
+- Sim movement is subjugated to Time.
 - Place furniture.
 - Move furniture.
 - Build.
