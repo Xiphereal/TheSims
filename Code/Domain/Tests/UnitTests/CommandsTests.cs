@@ -111,16 +111,23 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
-        public void Sim_teleports_to_interactable_when_far_away()
+        public void Sim_does_not_start_action_until_they_are_there()
         {
             Sim sim = Sim().At(Vector3.Zero).Build();
 
             Toilet interactable = new(at: Vector3.One * 999999);
-            UseToilet action = new(interactable);
+            Action action = new UseToilet(interactable);
             sim.Command(action);
             sim.ContinuePerformingActionAtHand(during: action.Duration.Seconds);
 
-            sim.Position.Should().Be(interactable.Position);
+            var performed = false;
+            sim.ActionPerformed += delegate (Action a)
+            {
+                performed = true;
+            };
+
+            performed.Should().BeFalse();
+            sim.Position.Should().NotBe(interactable.Position);
         }
 
         [Fact]

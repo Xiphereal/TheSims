@@ -103,14 +103,12 @@ namespace Domain
         public void ContinuePerformingActionAtHand(int during = 1)
         {
             if (!actions.Any())
-            {
                 return;
-            }
 
             currentActionElapsedTime += System.TimeSpan.FromSeconds(during);
 
             if (!NearToInteractable())
-                Position = actions.Peek().InteractablePosition;
+                return;
 
             for (int i = 0; i < during; i++)
                 actions.Peek().ContinuePerforming(this);

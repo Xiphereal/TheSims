@@ -2,6 +2,10 @@
 
 ## Must
 - Sim moves to points instead of teleporting.
+    - Sim does not start action until they're there.
+	- Sim ask each time step if they're there already.
+	- View moves Sim towards destination each time step.
+	- View notifies to Sim when they're already there.
 - Add different rates of increment of Needs depending of the specific Need.
 
 ## Should
