@@ -42,10 +42,10 @@ namespace Domain.Need
         public void Increase()
         {
             Hunger = new Hunger(hunger).Increase();
-            Hygiene--;
-            Bladder--;
-            Energy--;
-            Comfort--;
+            Hygiene = new Hygiene(hygiene).Increase();
+            Bladder = new Bladder(bladder).Increase();
+            Energy = new Energy(energy).Increase();
+            Comfort = new Comfort(comfort).Increase();
         }
     }
 }
