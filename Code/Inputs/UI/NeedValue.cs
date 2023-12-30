@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Need;
+using System;
 
 namespace Inputs.UI
 {
@@ -6,7 +7,7 @@ namespace Inputs.UI
     {
         public void OnTimeTimeout()
         {
-            Domain.Needs activeSimNeeds = FindUI().FindPlayer().ActiveSimNeeds;
+            Needs activeSimNeeds = FindUI().FindPlayer().ActiveSimNeeds;
 
             Value = Convert.ToDouble(
                 activeSimNeeds

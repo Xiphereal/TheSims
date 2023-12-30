@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain
+namespace Domain.Need
 {
     public class Needs
     {
@@ -41,7 +41,7 @@ namespace Domain
 
         public void Increase()
         {
-            Hunger--;
+            Hunger = new Hunger(hunger).Increase();
             Hygiene--;
             Bladder--;
             Energy--;

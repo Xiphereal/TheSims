@@ -212,6 +212,21 @@ namespace Domain.Tests.UnitTests
         }
 
         [Fact]
+        public void Needs_have_different_increment_rate()
+        {
+            Time time = new();
+            Lot lot = Lot().With(time).Build();
+            Sim sim = Sim().Build();
+            lot.EnteredBy(sim);
+
+            time.Forward(howMuch: 5);
+
+            sim.Hunger
+                .Should().BeLessThan(NeedMaxValue)
+                .And.BeLessThan(sim.Energy);
+        }
+
+        [Fact]
         public void Needs_cannot_underflow()
         {
             Time time = new();
