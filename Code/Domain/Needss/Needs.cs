@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Needss
+namespace Domain.Needings
 {
     public class Needs
     {

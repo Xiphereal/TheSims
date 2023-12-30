@@ -1,5 +1,5 @@
 using Domain;
-using Domain.Needss;
+using Domain.Needings;
 using Inputs.Extensions;
 
 namespace Godot

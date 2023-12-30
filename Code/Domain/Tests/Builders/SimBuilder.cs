@@ -1,4 +1,4 @@
-﻿using Domain.Needss;
+﻿using Domain.Needings;
 using System.Numerics;
 
 namespace Domain.Tests.Builders

@@ -1,4 +1,4 @@
-﻿namespace Domain.Needss
+﻿namespace Domain.Needings
 {
     internal class Comfort : Need
     {
