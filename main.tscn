@@ -288,10 +288,12 @@ layout_mode = 2
 
 [node name="Live" type="Button" parent="UI/PanelContainer/VBoxContainer/Modes"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Live"
 
 [node name="Buy" type="Button" parent="UI/PanelContainer/VBoxContainer/Modes"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Buy"
 script = ExtResource("14_ccp8r")
 
@@ -304,6 +306,7 @@ layout_mode = 2
 [node name="Pause" type="Button" parent="UI/PanelContainer/VBoxContainer/TimeControl/HBoxContainer" node_paths=PackedStringArray("timer")]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 icon = ExtResource("14_1fm2o")
 flat = true
 icon_alignment = 1
@@ -314,6 +317,7 @@ timer = NodePath("../../../../../../Timer")
 [node name="x1" type="Button" parent="UI/PanelContainer/VBoxContainer/TimeControl/HBoxContainer" node_paths=PackedStringArray("timer")]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 icon = ExtResource("15_w4sn7")
 flat = true
 icon_alignment = 1
@@ -325,6 +329,7 @@ wait_time = 1.0
 [node name="x2" type="Button" parent="UI/PanelContainer/VBoxContainer/TimeControl/HBoxContainer" node_paths=PackedStringArray("timer")]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 icon = ExtResource("16_a8lxu")
 flat = true
 expand_icon = true
@@ -335,6 +340,7 @@ wait_time = 0.4
 [node name="x3" type="Button" parent="UI/PanelContainer/VBoxContainer/TimeControl/HBoxContainer" node_paths=PackedStringArray("timer")]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 icon = ExtResource("17_tknk1")
 flat = true
 expand_icon = true
