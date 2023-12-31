@@ -355,6 +355,7 @@ wait_time = 0.2
 [connection signal="timeout" from="Timer" to="UI/Needs/VBoxContainer/Row3/Hygiene/Value" method="OnTimeTimeout"]
 [connection signal="timeout" from="Timer" to="UI/Needs/VBoxContainer/Row4/Bladder/Value" method="OnTimeTimeout"]
 [connection signal="input_event" from="Floor/Area3D" to="Floor" method="OnAreaInputEvent"]
+[connection signal="pressed" from="UI/PanelContainer/VBoxContainer/Modes/Live" to="UI/PanelContainer/VBoxContainer/Modes/Buy" method="CancelPurchase"]
 [connection signal="pressed" from="UI/PanelContainer/VBoxContainer/Modes/Buy" to="UI/PanelContainer/VBoxContainer/Modes/Buy" method="BuyItem"]
 [connection signal="pressed" from="UI/PanelContainer/VBoxContainer/TimeControl/HBoxContainer/Pause" to="UI/PanelContainer/VBoxContainer/TimeControl/HBoxContainer/Pause" method="_on_pressed"]
 [connection signal="pressed" from="UI/PanelContainer/VBoxContainer/TimeControl/HBoxContainer/x1" to="UI/PanelContainer/VBoxContainer/TimeControl/HBoxContainer/x1" method="_on_pressed"]
