@@ -43,6 +43,18 @@ public partial class Buy : Button
     {
         if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
             PlaceItem();
+
+        if (@event is InputEventKey keyEvent
+                && keyEvent.Pressed
+                && keyEvent.Keycode == Key.Escape)
+            CancelPurchase();
+    }
+
+    private void CancelPurchase()
+    {
+        item.QueueFree();
+
+        item = null;
     }
 
     private void PlaceItem()
