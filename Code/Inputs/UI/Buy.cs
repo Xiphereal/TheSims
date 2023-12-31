@@ -10,7 +10,7 @@ public partial class Buy : Button
             .Load<PackedScene>("res://Scenes/bed.tscn")
             .Instantiate<Node3D>();
 
-        GetTree().Root.AddChild(item);
+        GetTree().Root.GetNode("Root").AddChild(item);
     }
 
     public override void _Process(double delta)
