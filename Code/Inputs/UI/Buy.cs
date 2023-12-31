@@ -38,4 +38,15 @@ public partial class Buy : Button
             .GetCamera3D()
             .ProjectPosition(mousePosition, ArbitraryZDepthToBestFitTheMouseMovement);
     }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
+            PlaceItem();
+    }
+
+    private void PlaceItem()
+    {
+        item = null;
+    }
 }
