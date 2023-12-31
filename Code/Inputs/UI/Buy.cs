@@ -52,7 +52,7 @@ public partial class Buy : Button
 
     private void CancelPurchase()
     {
-        item.QueueFree();
+        item?.QueueFree();
 
         item = null;
     }
